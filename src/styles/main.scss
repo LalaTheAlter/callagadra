@@ -9,3 +9,14 @@ main {
 h2 {
   color: red;
 }
+
+.calendarBox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.calendarTile {
+  outline: 2px black inset;
+  width: 128px;
+}

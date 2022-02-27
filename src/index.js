@@ -1,11 +1,13 @@
 import './styles/main'
-const unused = "something";
 console.log("Hello, world")
+
+localStorage.setItem("TodosData",  JSON.stringify({ 2022: {1: {25: "ya ebal"}}}))
 
 import React from 'react'
 import ReactDOM from 'react-dom'
+import App from './components/App'
 
 ReactDOM.render(
-  <h1>Hello World! (in React)</h1>,
+  <App />,
   document.getElementById("root")
 )
