@@ -1,17 +1,15 @@
 import { getDay, getDaysInMonth, getMonth, getYear, lastDayOfMonth, startOfMonth } from "date-fns"
-import loadTodoData from "./loadTodoData"
 
-
-export default function buildMonthView(selectedDay) {
+export default function prebuildMonthView(selectedDate) {
   
-  const year = getYear(selectedDay) 
-  const month = getMonth(selectedDay)
+  const year = getYear(selectedDate) 
+  const month = getMonth(selectedDate)
 
-  const daysBefore = getDay(startOfMonth(selectedDay)) == 0 ? 6 : getDay(startOfMonth(selectedDay)) - 1
-  const daysAfter =  getDay(lastDayOfMonth(selectedDay)) == 0 ? 0 : 7 - getDay(lastDayOfMonth(selectedDay)) 
+  const daysBefore = getDay(startOfMonth(selectedDate)) == 0 ? 6 : getDay(startOfMonth(selectedDate)) - 1
+  const daysAfter =  getDay(lastDayOfMonth(selectedDate)) == 0 ? 0 : 7 - getDay(lastDayOfMonth(selectedDate)) 
 
 
-  const daysInCurrMonth = getDaysInMonth(selectedDay)
+  const daysInCurrMonth = getDaysInMonth(selectedDate)
   const daysInPrevMonth = getDaysInMonth(new Date(
     month >= 1 ? year 
     : year - 1, 
@@ -46,6 +44,6 @@ export default function buildMonthView(selectedDay) {
   }
 
   return (
-    loadTodoData(monthView)
+    monthView
   )
 }
