@@ -8,7 +8,7 @@ export default function TodoForm() {
   let todoText = useRef(null)
 
   const handleTodoInput = (event) => { 
-    saveTodoData(todoTime, todoText)
+    saveTodoData(todoTime.current.value, todoText.current.value)
     event.preventDefault()
   }
 

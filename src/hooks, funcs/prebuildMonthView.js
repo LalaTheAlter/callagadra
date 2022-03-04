@@ -42,7 +42,7 @@ export default function prebuildMonthView(selectedDate) {
       day: dayAfter
      })
   }
-
+  
   return (
     monthView
   )
