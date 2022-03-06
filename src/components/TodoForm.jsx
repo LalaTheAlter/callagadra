@@ -1,16 +1,31 @@
-import React, { useRef } from 'react'
-import saveTodoData from '../hooks, funcs/saveTodoData'
+import React, { useEffect, useRef, useState } from 'react'
+import saveTodoData from '../funcs/saveTodoData'
 
 
 export default function TodoForm() {
 
   let todoTime = useRef(null)
   let todoText = useRef(null)
-
+  const [selectedDate, setSelectedDate] = useState(null)
+  
   const handleTodoInput = (event) => { 
-    saveTodoData(todoTime.current.value, todoText.current.value)
+    saveTodoData(selectedDate, todoTime.current.value, todoText.current.value)
     event.preventDefault()
   }
+  
+  const handleDateSelect = (event) => {
+    setSelectedDate(event.detail)
+    event.preventDefault()
+  }
+
+  useEffect(() => {
+    document.addEventListener("newDateSelected", handleDateSelect) // recieved from <= CalendarTile.jsx
+  
+    return () => {
+      document.removeEventListener("newDateSelected", handleDateSelect) // recieved from <= CalendarTile.jsx
+    }
+  })
+  
 
   return (
     <div>
@@ -29,7 +44,7 @@ export default function TodoForm() {
             ref={todoText}
             name="todoText" 
             spellCheck="false"
-            minLength={4}
+            minLength={3}
             cols="30" 
             rows="10"
             required />

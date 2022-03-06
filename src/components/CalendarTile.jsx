@@ -1,9 +1,16 @@
 import React from 'react'
 
-export default function tileContent({ day, content }) {
+export default function CalendarTile({ year, month, day, content }) {
+
+  const handleSelection = () => { 
+    document.dispatchEvent(new CustomEvent("newDateSelected", {detail: `${year}_${month}_${day}`})) // goes to => todoForm
+  }
+
   return(
-    <div className='calendarTile'>
- 
+    <div
+      onFocus={handleSelection}
+      tabIndex={-1}
+      className="calendarTile">
       <div>
         {
           content == null ? content

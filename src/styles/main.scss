@@ -10,7 +10,7 @@ h2 {
   color: red;
 }
 
-.calendarBox {
+.calendarGrid {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -19,4 +19,9 @@ h2 {
 .calendarTile {
   outline: 2px black inset;
   width: 128px;
+  
 }
+.calendarTile:focus {
+  color: brown;
+}
+

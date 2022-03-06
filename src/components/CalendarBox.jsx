@@ -1,38 +1,27 @@
-import React, { useEffect, useState } from 'react'
-import prebuildMonthView from '../hooks, funcs/prebuildMonthView'
-import loadTodoData from "../hooks, funcs/loadTodoData"
-import CalendarTile from './CalendarTile'
+import React, { useState } from 'react'
+import CalendarGrid from './CalendarGrid'
+import { add, sub } from 'date-fns'
 
+export default function CalendarBox() {
 
+  const [month, setMonth] = useState(new Date())
 
-export default function CalendarBox({ selectedMonth }) {
-  const [monthView, setMonthView] = useState([])
-  
-  const handleStorageUpdates = () => {
-    setMonthView(loadTodoData(prebuildMonthView(selectedMonth)))
+  const selectNextMonth = () => {
+    setMonth(add(month, {months: 1}))
   }
 
-  useEffect(handleStorageUpdates, [selectedMonth])
-  
-  useEffect(() => {   
-    document.addEventListener("localStorageUpdated", handleStorageUpdates)
-    return () => {
-      document.removeEventListener("localStorageUpdated", handleStorageUpdates)
-    }
-  })
-  
+  const selectPreviousMonth = () => {
+    setMonth(sub(month, {months: 1}))
+  }
 
   return (
     <div className='calendarBox'>
-      {
-      monthView.map((el) => {
-        return (<CalendarTile 
-          key={`${el.year}_${el.month}_${el.day}`} 
-          day={el.day}
-          content={el.content}
-          />)
-      })
-      }
+      <div className='monthPicker'>
+        <h2>{month.toDateString()}</h2>
+        <button onClick={selectPreviousMonth}>{"<"}</button>
+        <button onClick={selectNextMonth}>{">"}</button>
+      </div>
+      <CalendarGrid selectedMonth={month} /> 
     </div>
-  );
+  )
 }
