@@ -3,7 +3,7 @@ $font-size: 3rem;
 main {
   font-size: $font-size;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 h2 {
@@ -19,7 +19,7 @@ h2 {
 .calendarTile {
   outline: 2px black inset;
   width: 128px;
-  
+  font-size: 0.7em;
 }
 .calendarTile:focus {
   color: brown;

@@ -1,4 +1,5 @@
 import React from 'react'
+import TodoItem from './TodoItem';
 
 export default function CalendarTile({ year, month, day, content }) {
 
@@ -7,18 +8,21 @@ export default function CalendarTile({ year, month, day, content }) {
   }
 
   return(
-    <div
+    <div 
       onFocus={handleSelection}
       tabIndex={-1}
       className="calendarTile">
       <div>
         {
-          content == null ? content
+          content == null ? null
           :
-          <>
-            <div>{content.time}</div>
-            <div>{content.text}</div>
-          </>
+          content.map((el) => {
+            return <TodoItem 
+              key={el.startTime + el.endTime + el.text}
+              start={el.startTime}
+              end={el.endTime}
+              text={el.text} />
+          })
         }
       </div>
       <div>

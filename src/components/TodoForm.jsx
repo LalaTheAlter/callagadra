@@ -4,12 +4,17 @@ import saveTodoData from '../funcs/saveTodoData'
 
 export default function TodoForm() {
 
-  let todoTime = useRef(null)
+  let todoStartTime = useRef(null)
+  let todoEndTime = useRef(null)
   let todoText = useRef(null)
   const [selectedDate, setSelectedDate] = useState(null)
   
   const handleTodoInput = (event) => { 
-    saveTodoData(selectedDate, todoTime.current.value, todoText.current.value)
+    saveTodoData(
+      selectedDate, 
+      todoStartTime.current.value, 
+      todoEndTime.current.value, 
+      todoText.current.value)
     event.preventDefault()
   }
   
@@ -29,12 +34,23 @@ export default function TodoForm() {
 
   return (
     <div>
+      <h4>Date: {selectedDate ? 
+        (selectedDate.split("_").reverse().join(", "))
+        : "dd, mm, yyyy"}</h4>
       <form onSubmit={handleTodoInput}>
         <label>
-          Pick a time: 
+          start: 
           <input 
-            ref={todoTime}
-            name="todoTime" 
+            ref={todoStartTime}
+            name="todoStartTime" 
+            type="time"
+            required />
+        </label>
+        <label>
+          end: 
+          <input 
+            ref={todoEndTime}
+            name="todoEndTime" 
             type="time"
             required />
         </label>
