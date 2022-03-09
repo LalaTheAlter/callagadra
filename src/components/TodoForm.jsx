@@ -1,59 +1,82 @@
-import React, { useEffect, useRef, useState } from 'react'
+
+import React, { useRef, useState } from 'react'
 import saveTodoData from '../funcs/saveTodoData'
+import convertMinutesToTimeString from '../funcs/convertMinutesToTimeString'
+import DualSlider from './DualSlider'
+
+export default function TodoForm({ selectedDate }) {
 
 
-export default function TodoForm() {
 
-  let todoStartTime = useRef(null)
-  let todoEndTime = useRef(null)
+ 
+  // const [time, setTime] = useState({ start: null, end: null})
+  const [start, setStart] = useState(0)
+  const [end, setEnd] = useState(24*60)
   let todoText = useRef(null)
-  const [selectedDate, setSelectedDate] = useState(null)
-  
-  const handleTodoInput = (event) => { 
+
+  const handleTodoSubmit = (event) => { 
     saveTodoData(
       selectedDate, 
-      todoStartTime.current.value, 
-      todoEndTime.current.value, 
+      convertMinutesToTimeString(start),
+      convertMinutesToTimeString(end),
       todoText.current.value)
     event.preventDefault()
   }
-  
-  const handleDateSelect = (event) => {
-    setSelectedDate(event.detail)
+
+  const handleTimeInput = (event) => {
+
+    let newValue = parseInt(event.target.value)  
+
+    switch (event.target.name) {
+      case "left":
+        if (newValue <= end) setStart(newValue)
+        break;
+      case "right":
+        if (newValue >= start) setEnd(newValue)
+        break;
+      default:
+        break;
+    }
+
     event.preventDefault()
   }
-
-  useEffect(() => {
-    document.addEventListener("newDateSelected", handleDateSelect) // recieved from <= CalendarTile.jsx
   
-    return () => {
-      document.removeEventListener("newDateSelected", handleDateSelect) // recieved from <= CalendarTile.jsx
-    }
-  })
-  
-
   return (
-    <div>
-      <h4>Date: {selectedDate ? 
-        (selectedDate.split("_").reverse().join(", "))
-        : "dd, mm, yyyy"}</h4>
-      <form onSubmit={handleTodoInput}>
-        <label>
+    <div className='todoForm'>
+      <form onSubmit={handleTodoSubmit}>
+          
+        <h4>
+          {convertMinutesToTimeString(start)} — {convertMinutesToTimeString(end)}
+        </h4>
+
+        <DualSlider 
+          leftValue={start}
+          rightValue={end}
+          onChange={handleTimeInput}
+          step={5} // 5min-step
+          max={24*60} // hours * mins
+          min={0}
+        />     
+        {/* <label>
           start: 
           <input 
             ref={todoStartTime}
             name="todoStartTime" 
             type="time"
-            required />
-        </label>
-        <label>
+            // required
+             />
+        </label> */}
+
+        {/* <label>
           end: 
           <input 
             ref={todoEndTime}
             name="todoEndTime" 
             type="time"
-            required />
-        </label>
+            // required 
+            />
+        </label> */}
+
         <label>
           Describe your event:
           <textarea 
@@ -65,6 +88,7 @@ export default function TodoForm() {
             rows="10"
             required />
         </label>
+
         <button type="submit">Set it</button>
       </form>
     </div>

@@ -1,15 +1,15 @@
 import React from 'react'
 import CalendarBox from './CalendarBox'
-import TodoForm from './TodoForm'
+import TodoBox from './TodoBox'
 
 export default function Mainframe() {
 
 
-
+  
   return (
     <main>
       <CalendarBox />
-      <TodoForm />
+      <TodoBox />
     </main>
   )
 }
