@@ -2,19 +2,20 @@
 import React, { useRef, useState } from 'react'
 import saveTodoData from '../funcs/saveTodoData'
 import convertMinutesToTimeString from '../funcs/convertMinutesToTimeString'
-import DualSlider from './DualSlider'
+import Nouislider from 'nouislider-react'
+import "nouislider/distribute/nouislider.css";
+
 
 export default function TodoForm({ selectedDate }) {
 
-
-
- 
-  // const [time, setTime] = useState({ start: null, end: null})
   const [start, setStart] = useState(0)
   const [end, setEnd] = useState(24*60)
   let todoText = useRef(null)
+  let todoTime = useRef(null)
 
   const handleTodoSubmit = (event) => { 
+    console.log(event)
+    console.log(todoTime)
     saveTodoData(
       selectedDate, 
       convertMinutesToTimeString(start),
@@ -23,23 +24,12 @@ export default function TodoForm({ selectedDate }) {
     event.preventDefault()
   }
 
-  const handleTimeInput = (event) => {
-
-    let newValue = parseInt(event.target.value)  
-
-    switch (event.target.name) {
-      case "left":
-        if (newValue <= end) setStart(newValue)
-        break;
-      case "right":
-        if (newValue >= start) setEnd(newValue)
-        break;
-      default:
-        break;
-    }
-
-    event.preventDefault()
+  const handleTimeSlide = (render, handle, value) => {
+    setStart(value[0].toFixed())
+    setEnd(value[1].toFixed())
   }
+
+
   
   return (
     <div className='todoForm'>
@@ -49,33 +39,13 @@ export default function TodoForm({ selectedDate }) {
           {convertMinutesToTimeString(start)} — {convertMinutesToTimeString(end)}
         </h4>
 
-        <DualSlider 
-          leftValue={start}
-          rightValue={end}
-          onChange={handleTimeInput}
-          step={5} // 5min-step
-          max={24*60} // hours * mins
-          min={0}
-        />     
-        {/* <label>
-          start: 
-          <input 
-            ref={todoStartTime}
-            name="todoStartTime" 
-            type="time"
-            // required
-             />
-        </label> */}
-
-        {/* <label>
-          end: 
-          <input 
-            ref={todoEndTime}
-            name="todoEndTime" 
-            type="time"
-            // required 
-            />
-        </label> */}
+        <Nouislider 
+          range={{ min: 0, max: 24*60 }} 
+          start={[0, 24*60]} 
+          step={5}
+          onSlide={handleTimeSlide}
+          connect/>
+          )  
 
         <label>
           Describe your event:
