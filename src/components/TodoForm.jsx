@@ -8,35 +8,32 @@ import "nouislider/distribute/nouislider.css";
 
 export default function TodoForm({ selectedDate }) {
 
-  const [start, setStart] = useState(0)
-  const [end, setEnd] = useState(24*60)
+  const [start, setStart] = useState(convertMinutesToTimeString(0))
+  const [end, setEnd] = useState(convertMinutesToTimeString(24*60))
   let todoText = useRef(null)
-  let todoTime = useRef(null)
 
   const handleTodoSubmit = (event) => { 
     console.log(event)
-    console.log(todoTime)
+
     saveTodoData(
       selectedDate, 
-      convertMinutesToTimeString(start),
-      convertMinutesToTimeString(end),
+      start,
+      end,
       todoText.current.value)
     event.preventDefault()
   }
 
   const handleTimeSlide = (render, handle, value) => {
-    setStart(value[0].toFixed())
-    setEnd(value[1].toFixed())
+    setStart(convertMinutesToTimeString(value[0].toFixed()))
+    setEnd(convertMinutesToTimeString(value[1].toFixed()))
   }
-
-
   
   return (
     <div className='todoForm'>
       <form onSubmit={handleTodoSubmit}>
           
         <h4>
-          {convertMinutesToTimeString(start)} — {convertMinutesToTimeString(end)}
+          {start === end ? `${start}` : `${start} — ${end}`}
         </h4>
 
         <Nouislider 

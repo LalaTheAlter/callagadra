@@ -18,7 +18,7 @@ export default function CalendarTile({ year, month, day, content }) {
           :
           content.map((el) => {
             return <TodoItem 
-              key={el.startTime + el.endTime + el.text}
+              key={el.startTime + el.endTime + el.text + Math.random()}
               start={el.startTime}
               end={el.endTime}
               text={el.text} />
