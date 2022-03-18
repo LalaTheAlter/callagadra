@@ -4,6 +4,7 @@ import saveTodoData from '../funcs/saveTodoData'
 import convertMinutesToTimeString from '../funcs/convertMinutesToTimeString'
 import Nouislider from 'nouislider-react'
 import "nouislider/distribute/nouislider.css";
+import formatTimeInterval from '../funcs/formatTimeInterval';
 
 
 export default function TodoForm({ selectedDate }) {
@@ -31,18 +32,20 @@ export default function TodoForm({ selectedDate }) {
   return (
     <div className='todoForm'>
       <form onSubmit={handleTodoSubmit}>
-          
-        <h4>
-          {start === end ? `${start}` : `${start} — ${end}`}
-        </h4>
 
-        <Nouislider 
-          range={{ min: 0, max: 24*60 }} 
-          start={[0, 24*60]} 
-          step={5}
-          onSlide={handleTimeSlide}
-          connect/>
-          )  
+        <label>
+          {formatTimeInterval(start, end)}
+          <Nouislider 
+            range={{ min: 0, max: 24*60 }} 
+            start={[0, 24*60]} 
+            step={5}
+            onSlide={handleTimeSlide}
+            behaviour="drag"
+            tabIndex={1}
+            connect
+            />
+            )  
+        </label>
 
         <label>
           Describe your event:
@@ -53,10 +56,15 @@ export default function TodoForm({ selectedDate }) {
             minLength={3}
             cols="30" 
             rows="10"
+            tabIndex={1}
             required />
         </label>
 
-        <button type="submit">Set it</button>
+        <button
+          tabIndex={2} 
+          type="submit">
+          Set it
+        </button>
       </form>
     </div>
   )

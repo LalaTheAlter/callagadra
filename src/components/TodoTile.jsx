@@ -1,7 +1,7 @@
 import React from 'react'
 import TodoItem from './TodoItem';
 
-export default function CalendarTile({ year, month, day, content }) {
+export default function TodoTile({ year, month, day, content }) {
 
   const handleSelection = () => { 
     document.dispatchEvent(new CustomEvent("newDateSelected", {detail: `${year}_${month}_${day}`})) // goes to => todoForm
@@ -14,7 +14,7 @@ export default function CalendarTile({ year, month, day, content }) {
       className="calendarTile">
       <div>
         {
-          content == null ? null
+          content === null ? null
           :
           content.map((el) => {
             return <TodoItem 

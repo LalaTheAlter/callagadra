@@ -1,4 +1,5 @@
 import React from 'react'
+import DeleteButton from './DeleteButton'
 
 export default function Headbar() {
   return (
@@ -9,6 +10,7 @@ export default function Headbar() {
           localStorage.clear()
           document.dispatchEvent(new Event("localStorageUpdated"))
         }}>Delete all the stuff</button>
+        <DeleteButton />
       </nav>
     </header>
   )

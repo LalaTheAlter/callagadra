@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import prebuildMonthViewModel from '../funcs/prebuildMonthViewModel'
 import loadTodoData from "../funcs/loadTodoData"
-import CalendarTile from './CalendarTile'
+import TodoTile from './TodoTile'
 
 
 
@@ -33,12 +33,13 @@ export default function CalendarGrid({ selectedMonth }) {
       className='calendarGrid'>
       {
       monthView.map((el) => {
-        return (<CalendarTile 
+        return (<TodoTile 
           key={`${el.year}_${el.month}_${el.day}`} 
           year={el.year}
           month={el.month}
           day={el.day}
           content={el.content}
+          
           />)
       })
       }
