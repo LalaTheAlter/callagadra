@@ -1,5 +1,5 @@
 import React from 'react'
-import { Portal } from '../hocs/Portal'
+import Portal from '../hocs/Portal'
 
 export default function DeleteMenu({ closeModal }) {
   
@@ -12,21 +12,23 @@ export default function DeleteMenu({ closeModal }) {
     document.dispatchEvent(new Event("localStorageUpdated")) // goes to => calendarGrid
   }
 
-  return Portal(
-    <div
-      className='modal'
-      onClick={closeModal}>
-      <div className='DeleteMenuContainer'>
-        <h4>
-          Do you really want it?
-        </h4>
-        <button onClick={handleDeletion}>
-          Yes
-        </button>
-        <button onClick={closeModal}>
-          No
-        </button>
+  return (
+    <Portal>
+      <div
+       className='modal'
+       onClick={closeModal}>
+        <div className='DeleteMenuContainer'>
+          <h4>
+            Do you really want it?
+          </h4>
+          <button onClick={handleDeletion}>
+            Yes
+          </button>
+          <button onClick={closeModal}>
+            No
+          </button>
+        </div>
       </div>
-    </div>
+    </Portal>
   )
 }
