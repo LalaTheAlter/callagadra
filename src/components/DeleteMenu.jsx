@@ -1,11 +1,7 @@
 import React from 'react'
-import Portal from '../hocs/Portal'
+import Portal from './Portal'
 
 export default function DeleteMenu({ closeModal }) {
-  
-  // const closeModal = () => {
-  //   setIsModalOpen(false)
-  // }
 
   const handleDeletion = () => {
     localStorage.clear()
@@ -18,15 +14,13 @@ export default function DeleteMenu({ closeModal }) {
        className='modal'
        onClick={closeModal}>
         <div className='DeleteMenuContainer'>
-          <h4>
-            Do you really want it?
-          </h4>
-          <button onClick={handleDeletion}>
-            Yes
-          </button>
-          <button onClick={closeModal}>
-            No
-          </button>
+          <div>
+            <h4>Do you really want it?</h4>
+          </div>
+          <div>
+            <button onClick={handleDeletion}> Yes </button>
+            <button onClick={closeModal}> No </button>
+          </div>
         </div>
       </div>
     </Portal>
