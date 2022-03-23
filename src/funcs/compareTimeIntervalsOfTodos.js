@@ -1,13 +1,24 @@
 import takeMinutesOf from "./takeMinutesOf";
 import takeHoursOf from "./takeHoursOf";
 
-export default function compareTimeIntervalsOfTodos({ startTime: a}, {startTime: b}) {
-  
+export default function compareTimeIntervalsOfTodos(
+  { startTime: startA, endTime: endA }, 
+  {startTime: startB, endTime: endB}
+  ) {
+  console.log(startA === startB)
   return ( 
-    takeHoursOf(a) < takeHoursOf(b) ? -1
+    startA === startB ? 
+    (takeHoursOf(endA) < takeHoursOf(endB) ? -1
     :
-    takeMinutesOf(a) < takeMinutesOf(b) ? -1
-    : 
-    1
+    takeMinutesOf(endA) < takeMinutesOf(endB) ? -1 
+    : 1)
+    
+    :
+    
+    (takeHoursOf(startA) < takeHoursOf(startB) ? -1
+    :
+    takeMinutesOf(startA) < takeMinutesOf(startB) ? -1
+    :
+    1)
   )
 }
