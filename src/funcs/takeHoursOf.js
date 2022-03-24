@@ -1,3 +1,3 @@
-export default function takeMinutesOf(dateString) {
-  return parseInt(dateString.split(":")[1])
+export default function takeHoursOf(timeString) {
+  return parseInt(timeString.split(":")[0])
 }

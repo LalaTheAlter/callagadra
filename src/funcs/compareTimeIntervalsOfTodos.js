@@ -1,24 +1,16 @@
-import takeMinutesOf from "./takeMinutesOf";
-import takeHoursOf from "./takeHoursOf";
+import findEarlierInterval from "./findEarlierInterval"
+
 
 export default function compareTimeIntervalsOfTodos(
   { startTime: startA, endTime: endA }, 
   {startTime: startB, endTime: endB}
   ) {
-  console.log(startA === startB)
+  console.log(startA, startB, findEarlierInterval(startA, startB))
+  console.log(endA, endB, findEarlierInterval(endA, endB))
   return ( 
     startA === startB ? 
-    (takeHoursOf(endA) < takeHoursOf(endB) ? -1
+    (findEarlierInterval(endA, endB))
     :
-    takeMinutesOf(endA) < takeMinutesOf(endB) ? -1 
-    : 1)
-    
-    :
-    
-    (takeHoursOf(startA) < takeHoursOf(startB) ? -1
-    :
-    takeMinutesOf(startA) < takeMinutesOf(startB) ? -1
-    :
-    1)
+    (findEarlierInterval(startA, startB))
   )
 }
