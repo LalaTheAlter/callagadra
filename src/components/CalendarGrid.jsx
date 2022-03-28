@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import prebuildMonthViewModel from '../funcs/prebuildMonthViewModel'
-import loadTodoData from "../funcs/loadTodoData"
+import fillInTodosData from "../funcs/fillInTodosData"
 import TodoTile from './TodoTile'
 
 
@@ -10,11 +10,11 @@ export default function CalendarGrid({ selectedMonth }) {
 
 
   const handleStorageUpdate = () => {
-    setMonthView(loadTodoData(monthView))
+    setMonthView(fillInTodosData(monthView))
   }
 
   const handleMonthUpdate = () => {
-    setMonthView(loadTodoData(prebuildMonthViewModel(selectedMonth)))
+    setMonthView(fillInTodosData(prebuildMonthViewModel(selectedMonth)))
   }
 
   useEffect(handleMonthUpdate, [selectedMonth])

@@ -1,22 +1,17 @@
 import compareTimeIntervalsOfTodos from "./compareTimeIntervalsOfTodos"
 
-export default function loadTodoData(array) {
+export default function loadTodoData(date) {
+  let arrayOfIDs = JSON.parse(localStorage.getItem(date))
 
-  const loadedArray = [...array]
+  if(arrayOfIDs !== null) {
+    let loadedTodoData = []
 
-  for (let i = 0; i < array.length; i++) {
-    let { year, month, day} = array[i]
-    let date = `${year}_${month}_${day}`
-    let storedContent = (JSON.parse(localStorage.getItem(date))) 
-     // getItem returns null if there's no entry
-    if(storedContent) storedContent.sort(compareTimeIntervalsOfTodos)
-
-    loadedArray[i].content = storedContent
-    // months and days from prebuilded model are indexed in an array-like way
-   
+    for (let i = 0; i < arrayOfIDs.length; i++) {
+      loadedTodoData.push(JSON.parse(localStorage.getItem(arrayOfIDs[i])))
+    }
+    
+    return loadedTodoData.sort(compareTimeIntervalsOfTodos)
+  } else {
+    return null
   }
-  
-  return (
-    loadedArray
-  )
 }

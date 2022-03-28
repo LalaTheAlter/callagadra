@@ -5,6 +5,7 @@ import convertMinutesToTimeString from '../funcs/convertMinutesToTimeString'
 import Nouislider from 'nouislider-react'
 import "nouislider/distribute/nouislider.css";
 import formatTimeInterval from '../funcs/formatTimeInterval';
+import applyTodoToDate from '../funcs/applyTodoToDate';
 
 
 export default function TodoForm({ selectedDate }) {
@@ -15,12 +16,13 @@ export default function TodoForm({ selectedDate }) {
 
   const handleTodoSubmit = (event) => { 
     console.log(event)
-
-    createNewTodo(
-      selectedDate, 
+    let todoID = createNewTodo(
       start,
       end,
-      todoText.current.value)
+      todoText.current.value
+    )
+    
+    applyTodoToDate(selectedDate, todoID)
     event.preventDefault()
   }
 
