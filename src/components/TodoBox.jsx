@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import SelectedDateLabel from './SelectedDateLabel'
+import SelectedDateTodoList from './SelectedDateTodoList'
 import TodoForm from './TodoForm'
 
 
@@ -14,18 +15,19 @@ export default function TodoBox() {
   }
 
   useEffect(() => {
-    document.addEventListener("newDateSelected", handleDateSelect) // recieved from <= CalendarTile.jsx
+    document.addEventListener("newDateSelected", handleDateSelect) // recieved from <= TodoTile.jsx
   
     return () => {
-      document.removeEventListener("newDateSelected", handleDateSelect) // recieved from <= CalendarTile.jsx
+      document.removeEventListener("newDateSelected", handleDateSelect) // recieved from <= TodoTile.jsx
     }
   })
   
   
   return (
     <div className='todoBox'>
-      <SelectedDateLabel selectedDate={selectedDate} />    
-      <TodoForm selectedDate={selectedDate}/>
+      <SelectedDateLabel selectedDate={selectedDate} /> 
+      <SelectedDateTodoList selectedDate={selectedDate} />
+      {selectedDate && <TodoForm selectedDate={selectedDate}/>}
     </div>
   )
 }

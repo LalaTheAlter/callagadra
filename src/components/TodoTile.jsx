@@ -1,5 +1,6 @@
 import React from 'react'
-import TodoItem from './TodoItem';
+import mapArrayToTodoItems from '../funcs/mapArrayToTodoItems';
+
 
 export default function TodoTile({ year, month, day, content }) {
 
@@ -16,13 +17,7 @@ export default function TodoTile({ year, month, day, content }) {
         {
           content === null ? null
           :
-          content.map((el) => {
-            return <TodoItem 
-              key={el.startTime + el.endTime + el.text + Math.random()}
-              start={el.startTime}
-              end={el.endTime}
-              text={el.text} />
-          })
+          content.map(mapArrayToTodoItems)
         }
       </div>
       <div>

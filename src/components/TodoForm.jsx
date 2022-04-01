@@ -1,6 +1,6 @@
 
 import React, { useRef, useState } from 'react'
-import createNewTodo from '../funcs/createNewTodo'
+import registerNewTodo from '../funcs/registerNewTodo'
 import convertMinutesToTimeString from '../funcs/convertMinutesToTimeString'
 import Nouislider from 'nouislider-react'
 import "nouislider/distribute/nouislider.css";
@@ -16,7 +16,7 @@ export default function TodoForm({ selectedDate }) {
 
   const handleTodoSubmit = (event) => { 
     console.log(event)
-    let todoID = createNewTodo(
+    let { todoID } = registerNewTodo(
       start,
       end,
       todoText.current.value
