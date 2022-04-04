@@ -17,7 +17,10 @@ export default function CalendarGrid({ selectedMonth }) {
     setMonthView(fillInTodosData(prebuildMonthViewModel(selectedMonth)))
   }
 
-  useEffect(handleMonthUpdate, [selectedMonth])
+  useEffect(
+    handleMonthUpdate, 
+    [selectedMonth]
+  )
   
   useEffect(() => {   
     document.addEventListener("localStorageUpdated", handleStorageUpdate) // recieved from <= saveTodoData.js

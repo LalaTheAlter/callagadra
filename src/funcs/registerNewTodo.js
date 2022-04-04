@@ -1,11 +1,16 @@
 import { customAlphabet } from "nanoid"
 
 export default function registerNewTodo(startTime, endTime, text) {
-  const nanoid = customAlphabet('abcdefgh', 6)
-  let todoID = nanoid()
+  const nanoid = customAlphabet('abcdefgh12345678', 6)
+  let todoContent = {
+    startTime, 
+    endTime, 
+    text,
+    todoID: nanoid()
+  }
 
-  const todoContent = JSON.stringify({ startTime, endTime, text, todoID })
+  const todo = JSON.stringify(todoContent)
   
-  localStorage.setItem(`${todoID}`, todoContent)
+  localStorage.setItem(`${todoContent.todoID}`, todo)
   return todoContent
 }

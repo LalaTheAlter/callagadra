@@ -7,7 +7,7 @@ export default function TodoTile({ year, month, day, content }) {
   const handleSelection = () => { 
     document.dispatchEvent(new CustomEvent("newDateSelected", {detail: `${year}_${month}_${day}`})) // goes to => todoForm
   }
-
+  // console.log(content, content && content.map(mapArrayToTodoItems))
   return(
     <div 
       onFocus={handleSelection}
@@ -15,9 +15,10 @@ export default function TodoTile({ year, month, day, content }) {
       className="calendarTile">
       <div>
         {
-          content === null ? null
-          :
-          content.map(mapArrayToTodoItems)
+          // content === null ? null
+          // :
+          
+          content !== null ? content.map(mapArrayToTodoItems) : null
         }
       </div>
       <div>
