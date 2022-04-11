@@ -1,3 +1,4 @@
+
 import compareTimeIntervalsOfTodos from "./compareTimeIntervalsOfTodos"
 
 export default function loadTodoData(date) {
