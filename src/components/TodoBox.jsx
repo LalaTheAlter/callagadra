@@ -10,8 +10,8 @@ export default function TodoBox() {
   const [selectedDate, setSelectedDate] = useState(null)
   
   const handleDateSelect = (event) => {
-    setSelectedDate(event.detail)
     event.preventDefault()
+    setSelectedDate(event.detail)
   }
 
   useEffect(() => {
@@ -21,13 +21,32 @@ export default function TodoBox() {
       document.removeEventListener("newDateSelected", handleDateSelect) // recieved from <= TodoTile.jsx
     }
   })
+
+  const [itemSelected, setItemSelected] = useState(null)
+
+  const handleNewTodoItemSelected = (event) => {
+    event.preventDefault()
+    console.log(event.detail)
+    setItemSelected(event.detail)
+  }
   
+  useEffect(() => {
+    document.addEventListener("newTodoItemSelected", handleNewTodoItemSelected) // recieved from <= TodoTile.jsx
+  
+    return () => {
+      document.removeEventListener("newTodoItemSelected", handleNewTodoItemSelected) // recieved from <= TodoTile.jsx
+    }
+  })
   
   return (
     <div className='todoBox'>
       <SelectedDateLabel selectedDate={selectedDate} /> 
       <SelectedDateTodoList selectedDate={selectedDate} />
-      {selectedDate && <TodoForm selectedDate={selectedDate}/>}
+      
+      {itemSelected && 
+        <TodoForm 
+          itemSelected={itemSelected}
+          selectedDate={selectedDate}/>}
     </div>
   )
 }

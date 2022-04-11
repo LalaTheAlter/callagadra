@@ -1,5 +1,3 @@
-import findEarlierInterval from "./findEarlierInterval"
-
 
 export default function compareTimeIntervalsOfTodos(
   { startTime: startA, endTime: endA }, 
@@ -13,4 +11,21 @@ export default function compareTimeIntervalsOfTodos(
     :
     (findEarlierInterval(startA, startB))
   )
+}
+
+function findEarlierInterval(a, b) {
+  return (
+    takeHoursOf(a) === takeHoursOf(b) ? 
+      (takeMinutesOf(a) <= takeMinutesOf(b) ? -1 : 1)
+      :
+      (takeHoursOf(a) > takeHoursOf(b) ? 1 : -1)
+  )
+}
+
+function takeHoursOf(timeString) {
+  return parseInt(timeString.split(":")[0])
+}
+
+function takeMinutesOf(timeString) {
+  return parseInt(timeString.split(":")[1])
 }

@@ -36,14 +36,14 @@ export default function CalendarGrid({ selectedMonth }) {
       className='calendarGrid'>
       {
       monthView.map((el) => {
-        return (<TodoTile 
-          key={`${el.year}_${el.month}_${el.day}`} 
-          year={el.year}
-          month={el.month}
-          day={el.day}
-          content={el.content}
-          
-          />)
+        return (
+          <TodoTile 
+            key={`${el.year}_${el.month}_${el.day}`} 
+            year={el.year}
+            month={el.month}
+            day={el.day}
+            content={el.content}
+            />)
       })
       }
     </div>

@@ -8,7 +8,7 @@ import formatTimeInterval from '../funcs/formatTimeInterval';
 import applyTodoToDate from '../funcs/applyTodoToDate';
 
 
-export default function TodoForm({ selectedDate }) {
+export default function TodoForm({ selectedDate, itemSelected }) {
 
   const [start, setStart] = useState(convertMinutesToTimeString(0))
   const [end, setEnd] = useState(convertMinutesToTimeString(24*60))
@@ -54,6 +54,8 @@ export default function TodoForm({ selectedDate }) {
           <textarea 
             ref={todoText}
             name="todoText" 
+            onChange={() => {}} // CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            value={selectedDate}
             spellCheck="false"
             minLength={3}
             cols="30" 
