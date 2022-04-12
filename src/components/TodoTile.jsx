@@ -1,30 +1,30 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import TodoItem from './todoItem'
 
-export default function TodoTile({ year, month, day, content }) {
+export default function TodoTile({ year, month, day }) {
 
+  const dateString = `${year}_${month}_${day}`
+  const state = useSelector(store => store[dateString])
+ 
   const handleSelection = () => { 
-    document.dispatchEvent(new CustomEvent("newDateSelected", {detail: `${year}_${month}_${day}`})) // goes to => todoForm
+    document.dispatchEvent(new CustomEvent("newDateSelected", {detail: dateString})) // goes to => todoForm
   }
-  // console.log(content, content && content.map(mapArrayToTodoItems))
+
   return(
     <div 
       onFocus={handleSelection}
       tabIndex={-1}
       className="calendarTile">
       <div>
-        {
-          // content === null ? null
-          // :
-          
-          content !== null ? content.map(
-            (el) => (<TodoItem 
-              key={el.startTime + el.endTime + el.text + Math.random()}
-              start={el.startTime}
-              end={el.endTime}
-              text={el.text}
-              todoID={el.todoID}
-              />)) : null
+        {         
+          state ? 
+          state.map((todoID) => (
+            <TodoItem 
+            todoID={todoID} 
+            key={todoID + Math.random()} />
+          )) 
+          : null
         }
       </div>
       <div>

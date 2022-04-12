@@ -1,21 +1,22 @@
 import React from 'react'
-import loadTodoData from '../funcs/loadTodoData'
+import { useSelector } from 'react-redux'
 import TodoItem from './todoItem'
 
 
 export default function SelectedDateTodoList({ selectedDate }) {
 
+  const state = useSelector(store => store[selectedDate])
+  
   return (
     <div className="TodoListContainer">
       {
-        loadTodoData(selectedDate) ? 
-        loadTodoData(selectedDate).map((el) => (<TodoItem 
-          key={el.startTime + el.endTime + el.text + Math.random()}
-          start={el.startTime}
-          end={el.endTime}
-          text={el.text}
-          todoID={el.todoID}
-          withEditButton/>))
+        state ? 
+        state.map((todoID) => (
+          <TodoItem 
+          key={todoID + Math.random()}
+          todoID={todoID}
+          withEditButton/>
+          ))
         :
         <h4 className="TodoListContainer-placeholder">
           Start writing something!

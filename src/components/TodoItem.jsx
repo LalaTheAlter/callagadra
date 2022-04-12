@@ -1,8 +1,10 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import formatTimeInterval from '../funcs/formatTimeInterval'
 
-export default function TodoItem({start, end, text, todoID, withEditButton}) {
-
+export default function TodoItem({ todoID, withEditButton}) {
+  
+  const {startTime, endTime, text} = useSelector(store => store[todoID])
   
   const handleSelectionForEditing = () => { 
     console.log("Event selected:", todoID)
@@ -11,13 +13,16 @@ export default function TodoItem({start, end, text, todoID, withEditButton}) {
 
   return (
     <div 
-      className='TodoItem' >
+      className='TodoItem'
+      >
       <div>
-        {formatTimeInterval(start, end)}
+        {formatTimeInterval(startTime, endTime)}
       </div>
+
       <div>
         {text}
       </div>
+
       {withEditButton && 
         <button
           onClick={handleSelectionForEditing}
