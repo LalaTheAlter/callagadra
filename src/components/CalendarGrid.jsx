@@ -1,32 +1,35 @@
 import React, { useEffect, useState } from 'react'
 import prebuildMonthViewModel from '../funcs/prebuildMonthViewModel'
+import { store } from '../funcs/redux-logic/store'
 import TodoTile from './TodoTile'
 
 
 
 export default function CalendarGrid({ selectedMonth }) {
 
-  const [monthView, setMonthView] = useState([])
+  // const [monthView, setMonthView] = useState([])
 
-  const handleStorageUpdate = () => {
-    setMonthView(monthView)
-  }
-
-  const handleMonthUpdate = () => {
-    setMonthView(prebuildMonthViewModel(selectedMonth))
-  }
-
-  useEffect(
-    handleMonthUpdate, 
-    [selectedMonth]
-  )
+  // const handleStorageUpdate = () => {
+  //   setMonthView(monthView)
+  // }
   
-  useEffect(() => {   
-    document.addEventListener("localStorageUpdated", handleStorageUpdate) // recieved from <= saveTodoData.js
-    return () => {
-      document.removeEventListener("localStorageUpdated", handleStorageUpdate) // recieved from <= saveTodoData.js
-    }
-  })
+  // const handleMonthUpdate = () => {
+  //   console.log(monthView, selectedMonth)
+  //   console.log(prebuildMonthViewModel(selectedMonth))
+  //   console.log(monthView, selectedMonth)
+  // }
+  
+  // useEffect(
+  //   handleMonthUpdate, 
+  //   [selectedMonth]
+  // )
+  
+  // useEffect(() => {   
+  //   document.addEventListener("localStorageUpdated", handleStorageUpdate) // recieved from <= saveTodoData.js
+  //   return () => {
+  //     document.removeEventListener("localStorageUpdated", handleStorageUpdate) // recieved from <= saveTodoData.js
+  //   }
+  // })
   
 
   return (
@@ -34,7 +37,7 @@ export default function CalendarGrid({ selectedMonth }) {
       tabIndex={0} 
       className='calendarGrid'>
       {
-      monthView.map(({year, month, day}) => {
+      prebuildMonthViewModel(selectedMonth).map(({year, month, day}) => {
         return (
           <TodoTile 
             key={`${year}_${month}_${day}`} 
@@ -42,7 +45,7 @@ export default function CalendarGrid({ selectedMonth }) {
             month={month}
             day={day}
             />)
-      })
+        })
       }
     </div>
   );

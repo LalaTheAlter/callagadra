@@ -42,8 +42,6 @@ export default function prebuildMonthViewModel(selectedDate) {
       day: dayAfter
      })
   }
-  
-  return (
-    monthView
-  )
+  console.log(selectedDate, monthView)
+  return monthView
 }

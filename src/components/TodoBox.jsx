@@ -43,9 +43,9 @@ export default function TodoBox() {
       <SelectedDateLabel selectedDate={selectedDate} /> 
       <SelectedDateTodoList selectedDate={selectedDate} />
       
-      {itemSelected && 
+      {selectedDate && 
         <TodoForm 
-          itemSelected={itemSelected}
+          // itemSelected={itemSelected}
           selectedDate={selectedDate}/>}
     </div>
   )

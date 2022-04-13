@@ -1,28 +1,41 @@
 
 import React, { useRef, useState } from 'react'
-import registerNewTodo from '../funcs/registerNewTodo'
+import createNewTodo from '../funcs/createNewTodo'
 import convertMinutesToTimeString from '../funcs/convertMinutesToTimeString'
 import Nouislider from 'nouislider-react'
 import "nouislider/distribute/nouislider.css";
 import formatTimeInterval from '../funcs/formatTimeInterval';
 import applyTodoToDate from '../funcs/applyTodoToDate';
+import { useDispatch } from 'react-redux';
 
 
-export default function TodoForm({ selectedDate, itemSelected }) {
+export default function TodoForm({ selectedDate }) {
 
   const [start, setStart] = useState(convertMinutesToTimeString(0))
   const [end, setEnd] = useState(convertMinutesToTimeString(24*60))
   let todoText = useRef(null)
+  const dispatch = useDispatch()
 
   const handleTodoSubmit = (event) => { 
     console.log(event)
-    let { todoID } = registerNewTodo(
+    let todo = createNewTodo(
       start,
       end,
       todoText.current.value
     )
-    
-    applyTodoToDate(selectedDate, todoID)
+
+    dispatch({
+      type: 'todos/create_todo', 
+      payload: todo
+    })
+    // dispatch({
+    //   type: 'dates/apply_todo', 
+    //   payload: {
+    //     todoID: todo.todoID,
+    //     date: selectedDate
+    //   }
+    // })
+    // applyTodoToDate(selectedDate, todoID)
     event.preventDefault()
   }
 
@@ -46,7 +59,6 @@ export default function TodoForm({ selectedDate, itemSelected }) {
             tabIndex={1}
             connect
             />
-            )  
         </label>
 
         <label>
@@ -54,7 +66,7 @@ export default function TodoForm({ selectedDate, itemSelected }) {
           <textarea 
             ref={todoText}
             name="todoText" 
-            onChange={() => {}} // CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // onChange={() => {}} // CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             value={selectedDate}
             spellCheck="false"
             minLength={3}

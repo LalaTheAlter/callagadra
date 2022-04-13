@@ -13,7 +13,7 @@ export default function TodoTile({ year, month, day }) {
 
   return(
     <div 
-      onFocus={handleSelection}
+      onClick={handleSelection}
       tabIndex={-1}
       className="calendarTile">
       <div>
