@@ -5,7 +5,7 @@ import TodoItem from './todoItem'
 
 export default function SelectedDateTodoList({ selectedDate }) {
 
-  const state = useSelector(store => store[selectedDate])
+  const state = useSelector(store => store.dates[selectedDate])
   
   return (
     <div className="TodoListContainer">

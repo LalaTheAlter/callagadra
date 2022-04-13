@@ -4,7 +4,7 @@ import formatTimeInterval from '../funcs/formatTimeInterval'
 
 export default function TodoItem({ todoID, withEditButton}) {
   
-  const {startTime, endTime, text} = useSelector(store => store[todoID])
+  const {startTime, endTime, text} = useSelector(store => store.todos[todoID])
   
   const handleSelectionForEditing = () => { 
     console.log("Event selected:", todoID)

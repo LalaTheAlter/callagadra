@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import Footerlogo from './Footerlogo'
 import Headerbar from './Headerbar'
 import Mainframe from './Mainframe'
-import { store } from '../funcs/redux-logic/todoStore'
+import { store } from '../funcs/redux-logic/store'
 
 function App() {
   return (

@@ -9,7 +9,7 @@ console.log("mode active: " + mode)
 
 module.exports = {
   mode: mode,
-  entry: ['react-hot-loader/patch', './src/index.js'],
+  entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     clean: true,
