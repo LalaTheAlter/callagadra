@@ -1,32 +1,34 @@
-import { createStore, combineReducers } from 'redux'
-import todosReducer from './todoSlice'
-import datesReducer from './dateSlice'
-// import todoDeletingReducer from './todoDeletingReducer'
-
-
-const rootReducer = combineReducers({
-  todos: todosReducer, 
-  dates: datesReducer
-})
+import { createStore,  } from 'redux'
+import rootReducer from './rootReducer';
+import compareTimeIntervalsOfTodos from "../compareTimeIntervalsOfTodos";
 
 const prevStore = { 
-  todos: JSON.parse(localStorage.getItem("todos")) || {}, 
-  dates: JSON.parse(localStorage.getItem("dates")) || {}
+  todos: loadFromLocalStorage("todos"), 
+  dates: loadFromLocalStorage("dates")
 }
-
 
 const store = createStore(rootReducer, prevStore)
 
-store.subscribe(() => {
-  saveToLocalStorage("todos")
-  saveToLocalStorage("dates")
-});
+store.subscribe(handleStoreUpdates);
 
 console.log(store, prevStore)
 console.log(localStorage)
+
+export {store}
+
+
+// UTILITY FUNCTIONS:
+
+function handleStoreUpdates() {
+  console.log('saving...')
+  saveToLocalStorage("todos")
+  saveToLocalStorage("dates")
+}
 
 function saveToLocalStorage(key) {
   localStorage.setItem(key, JSON.stringify(store.getState()[key]))
 }
 
-export {store}
+function loadFromLocalStorage(key) {
+  return JSON.parse(localStorage.getItem(key)) || {}
+}

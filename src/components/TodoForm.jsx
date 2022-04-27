@@ -5,7 +5,6 @@ import convertMinutesToTimeString from '../funcs/convertMinutesToTimeString'
 import Nouislider from 'nouislider-react'
 import "nouislider/distribute/nouislider.css";
 import formatTimeInterval from '../funcs/formatTimeInterval';
-import applyTodoToDate from '../funcs/applyTodoToDate';
 import { useDispatch } from 'react-redux';
 
 
@@ -13,29 +12,20 @@ export default function TodoForm({ selectedDate }) {
 
   const [start, setStart] = useState(convertMinutesToTimeString(0))
   const [end, setEnd] = useState(convertMinutesToTimeString(24*60))
-  let todoText = useRef(null)
+  let text = useRef(null)
   const dispatch = useDispatch()
 
   const handleTodoSubmit = (event) => { 
     console.log(event)
-    let todo = createNewTodo(
+    const todo = createNewTodo(
       start,
       end,
-      todoText.current.value
+      text.current.value
     )
 
-    dispatch({
-      type: 'todos/create_todo', 
-      payload: todo
-    })
-    // dispatch({
-    //   type: 'dates/apply_todo', 
-    //   payload: {
-    //     todoID: todo.todoID,
-    //     date: selectedDate
-    //   }
-    // })
-    // applyTodoToDate(selectedDate, todoID)
+    setTimeout(() => {
+      dispatch({ type: 'CREATE', payload: [todo, selectedDate]})
+    }, 0);
     event.preventDefault()
   }
 
@@ -64,10 +54,10 @@ export default function TodoForm({ selectedDate }) {
         <label>
           Describe your event:
           <textarea 
-            ref={todoText}
+            ref={text}
             name="todoText" 
             // onChange={() => {}} // CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            value={selectedDate}
+            
             spellCheck="false"
             minLength={3}
             cols="30" 

@@ -3,12 +3,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require("eslint-webpack-plugin");
 
-let mode = process.env.NODE_ENV
-console.log("mode active: " + mode)
+let currMode = process.env.NODE_ENV
+console.log("mode active: " + currMode)
 
 
 module.exports = {
-  mode: mode,
+  mode: currMode,
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -22,7 +22,7 @@ module.exports = {
     hot: true,
     historyApiFallback: true,
   },
-  target: mode === "development" ? "web" : "browserslist",
+  target: currMode === "development" ? "web" : "browserslist",
 
   plugins: [
     new HtmlWebpackPlugin({
@@ -40,12 +40,13 @@ module.exports = {
     }),
   ],
   performance: { hints: false },
-  optimization: {
+  optimization: currMode === "production" ? {
     minimize: true,
     splitChunks: {
       chunks: 'all',
     },
-  },
+  }
+  : {},
   
   resolve: {
     extensions: [".jsx", ".js", ".sass", ".scss", ".css", ".json", "..."]
@@ -92,7 +93,7 @@ module.exports = {
 
       {
         test: /\.(jpe?g|gif|svg|webp)$/i,
-        type: mode === 'production' ? 'asset' : 'asset/resource'
+        type: currMode === 'production' ? 'asset' : 'asset/resource'
       },
       {
         test: /\.(png)$/,

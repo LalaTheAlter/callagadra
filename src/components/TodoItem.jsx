@@ -8,7 +8,7 @@ export default function TodoItem({ todoID, withEditButton}) {
   
   const handleSelectionForEditing = () => { 
     console.log("Event selected:", todoID)
-    document.dispatchEvent(new CustomEvent("newTodoItemSelected", {detail: todoID})) // goes to => todoForm
+    document.dispatchEvent(new CustomEvent("newTodoItemSelected", {detail: todoID})) // goes to => todoBox
   }
 
   return (

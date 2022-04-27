@@ -9,14 +9,15 @@ export default function CalendarGrid({ selectedMonth }) {
 
   // const [monthView, setMonthView] = useState([])
 
-  // const handleStorageUpdate = () => {
-  //   setMonthView(monthView)
-  // }
+  // // const handleStorageUpdate = () => {
+  // //   setMonthView(monthView)
+  // // }
   
   // const handleMonthUpdate = () => {
   //   console.log(monthView, selectedMonth)
   //   console.log(prebuildMonthViewModel(selectedMonth))
   //   console.log(monthView, selectedMonth)
+  //   setMonthView(prebuildMonthViewModel(selectedMonth))
   // }
   
   // useEffect(

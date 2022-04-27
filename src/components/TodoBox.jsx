@@ -31,10 +31,10 @@ export default function TodoBox() {
   }
   
   useEffect(() => {
-    document.addEventListener("newTodoItemSelected", handleNewTodoItemSelected) // recieved from <= TodoTile.jsx
+    document.addEventListener("newTodoItemSelected", handleNewTodoItemSelected) // recieved from <= TodoItem.jsx
   
     return () => {
-      document.removeEventListener("newTodoItemSelected", handleNewTodoItemSelected) // recieved from <= TodoTile.jsx
+      document.removeEventListener("newTodoItemSelected", handleNewTodoItemSelected) // recieved from <= TodoItem.jsx
     }
   })
   

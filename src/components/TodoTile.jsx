@@ -8,7 +8,7 @@ export default function TodoTile({ year, month, day }) {
   const state = useSelector(store => store.dates[dateString])
  
   const handleSelection = () => { 
-    document.dispatchEvent(new CustomEvent("newDateSelected", {detail: dateString})) // goes to => todoForm
+    document.dispatchEvent(new CustomEvent("newDateSelected", {detail: dateString})) // goes to => todoBox
   }
 
   return(
