@@ -1,11 +1,12 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import useStoreDate from '../funcs/redux-logic/useStoreDate'
+
 import TodoItem from './todoItem'
 
 
 export default function SelectedDateTodoList({ selectedDate }) {
 
-  const state = useSelector(store => store.dates[selectedDate])
+  const state = useStoreDate(selectedDate)
   
   return (
     <div className="TodoListContainer">

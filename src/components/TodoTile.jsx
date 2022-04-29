@@ -1,11 +1,11 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import useStoreDate from '../funcs/redux-logic/useStoreDate'
 import TodoItem from './todoItem'
 
 export default function TodoTile({ year, month, day }) {
 
   const dateString = `${year}_${month}_${day}`
-  const state = useSelector(store => store.dates[dateString])
+  const state = useStoreDate(dateString)
  
   const handleSelection = () => { 
     document.dispatchEvent(new CustomEvent("newDateSelected", {detail: dateString})) // goes to => todoBox

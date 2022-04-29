@@ -1,6 +1,5 @@
 import { createStore,  } from 'redux'
 import rootReducer from './rootReducer';
-import compareTimeIntervalsOfTodos from "../compareTimeIntervalsOfTodos";
 
 const prevStore = { 
   todos: loadFromLocalStorage("todos"), 

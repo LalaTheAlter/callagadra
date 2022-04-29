@@ -1,10 +1,10 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import formatTimeInterval from '../funcs/formatTimeInterval'
+import useStoreTodo from '../funcs/redux-logic/useStoreTodo'
 
 export default function TodoItem({ todoID, withEditButton}) {
   
-  const {startTime, endTime, text} = useSelector(store => store.todos[todoID])
+  const {startTime, endTime, text} = useStoreTodo(todoID)
   
   const handleSelectionForEditing = () => { 
     console.log("Event selected:", todoID)

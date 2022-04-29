@@ -1,8 +1,13 @@
+import { store } from "./store"
 
-export default function compareTimeIntervalsOfTodos(
-  { startTime: startA, endTime: endA }, 
-  {startTime: startB, endTime: endB}
-  ) {
+function pullTodoByGivenID(todoID) {
+  return store.getState()["todos"][todoID]
+}
+
+export default function compareTimeIntervalsOfTodos(todoID1, todoID2) {
+  const { startTime: startA, endTime: endA } = pullTodoByGivenID(todoID1) 
+  const { startTime: startB, endTime: endB } = pullTodoByGivenID(todoID2)
+
   // console.log(startA, startB, findEarlierInterval(startA, startB))
   // console.log(endA, endB, findEarlierInterval(endA, endB))
   return ( 
