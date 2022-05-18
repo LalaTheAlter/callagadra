@@ -9,9 +9,13 @@ export default function DeleteButton() {
     setIsModalOpened(false)
   }
 
+  const openModal = () => {
+    setIsModalOpened(true)
+  }
+
   return (
     <>
-      <button onClick={() => {setIsModalOpened(true)}}>
+      <button onClick={openModal}>
         delete everything
       </button>
       {isModalOpened && <DeleteMenu closeModal={closeModal}/> }
