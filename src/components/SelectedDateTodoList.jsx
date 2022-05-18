@@ -6,13 +6,13 @@ import TodoItem from './todoItem'
 
 export default function SelectedDateTodoList({ selectedDate }) {
 
-  const state = useStoreDate(selectedDate)
+  const arrayOfTodos = useStoreDate(selectedDate)
   
   return (
     <div className="TodoListContainer">
       {
-        state ? 
-        state.map((todoID) => (
+        arrayOfTodos ? 
+        arrayOfTodos.map((todoID) => (
           <TodoItem 
           key={todoID + Math.random()}
           todoID={todoID}

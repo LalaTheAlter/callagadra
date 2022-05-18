@@ -12,7 +12,7 @@ export default function TodoForm({ selectedDate }) {
 
   const [start, setStart] = useState(convertMinutesToTimeString(0))
   const [end, setEnd] = useState(convertMinutesToTimeString(24*60))
-  let text = useRef(null)
+  const text = useRef(null)
   const dispatch = useDispatch()
 
   const handleTodoSubmit = (event) => { 
