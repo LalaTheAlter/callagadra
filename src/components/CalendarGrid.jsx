@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import prebuildMonthViewModel from '../funcs/prebuildMonthViewModel'
-import { store } from '../funcs/redux-logic/store'
 import TodoTile from './TodoTile'
 
 

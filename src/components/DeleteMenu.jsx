@@ -1,11 +1,12 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import Portal from '../hocs/Portal'
 
 export default function DeleteMenu({ closeModal }) {
+  const dispatch = useDispatch()
 
   const handleDeletion = () => {
-    localStorage.clear()
-    document.dispatchEvent(new Event("localStorageUpdated")) // goes to => calendarGrid
+    dispatch({ type: "ANNIHILATE" })
   }
 
   return (

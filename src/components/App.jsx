@@ -9,11 +9,11 @@ import { store } from '../funcs/redux-logic/store'
 function App() {
   return (
     <>
-      <Headerbar />
       <Provider store={store}>
+        <Headerbar />
         <Mainframe/>
+        <Footerlogo />
       </Provider>
-      <Footerlogo />
     </>
   )
 }

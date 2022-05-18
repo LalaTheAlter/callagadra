@@ -35,6 +35,12 @@ export default function rootReducer({todos, dates} = initialState, action) {
         todos: deleteTodo(todos, action.payload),
         dates: clearAllInstances(dates, action.payload)
       }
+
+    case 'ANNIHILATE': // no payload; just deletes everything
+      return {
+        todos: {},
+        dates: {}
+      }
   
     default:
       console.log("reached default in rootReducer!")

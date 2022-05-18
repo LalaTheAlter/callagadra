@@ -6,7 +6,6 @@ export default function CalendarBox() {
   
   const [month, setMonth] = useState(new Date())
 
-
   return (
     <div className='calendarBox'>
       <MonthPicker selectedMonth={month} cbParent={setMonth} />
