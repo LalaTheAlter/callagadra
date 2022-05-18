@@ -6,37 +6,37 @@ const initialState = {
 
 export default function rootReducer({todos, dates} = initialState, action) {
   switch (action.type) {
-    case 'CREATE': // dispatch({..., [todoObj, dateString]})
+    case 'CREATE': // dispatch({type: ..., payload: [todoObj, dateString]})
       return {
         todos: writeTodo(todos, action.payload),
         dates: applyTodo(dates, action.payload)
       }
 
-    case 'INSERT': // dispatch({..., [todoObj, dateString]})
+    case 'INSERT': // dispatch({type: ..., payload: [todoObj, dateString]})
       return {
         todos,
         dates: applyTodo(dates, action.payload)
       }
 
-    case 'CHANGE': // dispatch({..., [todoObj, dateString]})
+    case 'CHANGE': // dispatch({type: ..., payload: [todoObj, dateString]})
       return {
         todos: writeTodo(todos, action.payload),
         dates
       };
 
-    case 'REMOVE': // dispatch({..., [todoID, dateString]})
+    case 'REMOVE': // dispatch({type: ..., payload: [todoID, dateString]})
       return {
         todos,
         dates: removeTodo(dates, action.payload)
       }
 
-    case 'DROP': // dispatch({..., todoID})
+    case 'DROP': // dispatch({type: ..., payload: todoID})
       return {
         todos: deleteTodo(todos, action.payload),
         dates: clearAllInstances(dates, action.payload)
       }
 
-    case 'ANNIHILATE': // no payload; just deletes everything
+    case 'ANNIHILATE': // dispatch({type: ...})
       return {
         todos: {},
         dates: {}

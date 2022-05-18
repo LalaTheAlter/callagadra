@@ -17,11 +17,7 @@ export default function TodoForm({ selectedDate }) {
 
   const handleTodoSubmit = (event) => { 
     console.log(event)
-    const todo = createNewTodo(
-      start,
-      end,
-      text.current.value
-    )
+    const todo = createNewTodo(start, end, text.current.value)
 
     setTimeout(() => {
       dispatch({ type: 'CREATE', payload: [todo, selectedDate]})
