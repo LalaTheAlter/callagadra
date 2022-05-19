@@ -22,12 +22,9 @@ export default function ModalOpener({ buttonText, children }) {
             {React.Children.map(children, (reactEl) => {
               return {
                 ...reactEl,
-                props: {
-                  ...reactEl.props,
-                  closeModal: function closeModal() {setModal(false)}
+                props: {closeModal: handleModal(false), ...reactEl.props }
                   // grants a function to all immediate children of this component
-                  // watch out and take it from props when needed 
-                }
+                  // watch out and take it from props when needed;
               } 
             })
             }

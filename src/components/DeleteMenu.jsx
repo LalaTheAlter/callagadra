@@ -5,9 +5,9 @@ export default function DeleteMenu({ closeModal }) {
 
   const dispatch = useDispatch()
 
-  const handleDeletion = () => {
+  const handleDeletion = (event) => {
     dispatch({ type: "ANNIHILATE" })
-    closeModal() // this is taken from ModalOpener
+    closeModal(event) // this is taken from ModalOpener
   }
 
   return (
