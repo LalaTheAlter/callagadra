@@ -12,14 +12,10 @@ export default function CalendarGrid({ selectedMonth }) {
       tabIndex={0} 
       className='calendarGrid'>
       {
-      prebuildMonthViewModel(selectedMonth).map(({year, month, day}) => {
+      prebuildMonthViewModel(selectedMonth).map((dateString) => {
         return (
-          <TodoTile 
-            key={`${year}_${month}_${day}`} 
-            year={year}
-            month={month}
-            day={day}
-            />)
+          <TodoTile key={dateString} dateString={dateString}/>
+          )
         })
       }
     </div>

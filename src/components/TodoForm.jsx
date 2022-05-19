@@ -33,7 +33,6 @@ export default function TodoForm({ selectedDate }) {
   return (
     <div className='todoForm'>
       <form onSubmit={handleTodoSubmit}>
-
         <label>
           {formatTimeInterval(start, end)}
           <Nouislider 

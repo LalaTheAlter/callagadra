@@ -67,7 +67,7 @@ function writeTodo(todos, payload) {
 function applyTodo(dates, payload) {
   const [{todoID}, selectedDate] = payload
   const targetArray = dates[selectedDate] ? [...dates[selectedDate]] : []
-  console.log(targetArray)
+
   if (!targetArray.includes(todoID)) {
     targetArray.push(todoID)
   }

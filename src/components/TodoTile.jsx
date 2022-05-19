@@ -2,11 +2,11 @@ import React from 'react'
 import useStoreDate from '../funcs/redux-logic/useStoreDate'
 import TodoItem from './todoItem'
 
-export default function TodoTile({ year, month, day }) {
+export default function TodoTile({ dateString }) {
 
-  const dateString = `${year}_${month}_${day}`
   const arrayOfTodos = useStoreDate(dateString)
- 
+  const day = dateString.split("_")[2] // dateString is like "yyyy_MM_dd"
+  
   const handleSelection = () => { 
     document.dispatchEvent(new CustomEvent("newDateSelected", {detail: dateString})) // goes to => todoBox
   }

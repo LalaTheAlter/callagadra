@@ -1,3 +1,4 @@
+import { format } from 'date-fns'
 import React, { useEffect, useState } from 'react'
 
 import SelectedDateLabel from './SelectedDateLabel'
@@ -7,7 +8,7 @@ import TodoForm from './TodoForm'
 
 export default function TodoBox() {
 
-  const [selectedDate, setSelectedDate] = useState(null)
+  const [selectedDate, setSelectedDate] = useState(format(new Date(), 'y_M_d'))
   
   const handleDateSelect = (event) => {
     event.preventDefault()
@@ -43,10 +44,7 @@ export default function TodoBox() {
       <SelectedDateLabel selectedDate={selectedDate} /> 
       <SelectedDateTodoList selectedDate={selectedDate} />
       
-      {selectedDate && 
-        <TodoForm 
-          // itemSelected={itemSelected}
-          selectedDate={selectedDate}/>}
+      {selectedDate && <TodoForm selectedDate={selectedDate}/>}
     </div>
   )
 }
