@@ -1,13 +1,12 @@
 import { format } from 'date-fns'
 import React, { useEffect, useState } from 'react'
+import ModalOpener from '../hocs/ModalOpener'
 
-import SelectedDateLabel from './SelectedDateLabel'
-import SelectedDateTodoList from './SelectedDateTodoList'
+import SelectedDateViewer from './SelectedDateViewer'
 import TodoForm from './TodoForm'
 
 
 export default function TodoBox() {
-
   const [selectedDate, setSelectedDate] = useState(format(new Date(), 'y_M_d'))
   
   const handleDateSelect = (event) => {
@@ -22,29 +21,16 @@ export default function TodoBox() {
       document.removeEventListener("newDateSelected", handleDateSelect) // recieved from <= TodoTile.jsx
     }
   })
+  
 
-  const [itemSelected, setItemSelected] = useState(null)
-
-  const handleNewTodoItemSelected = (event) => {
-    event.preventDefault()
-    console.log(event.detail)
-    setItemSelected(event.detail)
-  }
-  
-  useEffect(() => {
-    document.addEventListener("newTodoItemSelected", handleNewTodoItemSelected) // recieved from <= TodoItem.jsx
-  
-    return () => {
-      document.removeEventListener("newTodoItemSelected", handleNewTodoItemSelected) // recieved from <= TodoItem.jsx
-    }
-  })
-  
+ 
   return (
     <div className='todoBox'>
-      <SelectedDateLabel selectedDate={selectedDate} /> 
-      <SelectedDateTodoList selectedDate={selectedDate} />
-      
-      {selectedDate && <TodoForm selectedDate={selectedDate}/>}
+      <SelectedDateViewer selectedDate={selectedDate} />
+
+      <ModalOpener buttonText="Manage Events">
+        <TodoForm selectedDate={selectedDate}/>
+      </ModalOpener>
     </div>
   )
 }

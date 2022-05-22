@@ -3,7 +3,7 @@ import React from 'react'
 import formatZeros from '../funcs/formatZeros'
 
 
-export default function SelectedDateLabel({ selectedDate }) {
+export default function DateLabel({ selectedDate }) {
   return (
     <h4>
       {selectedDate ? 

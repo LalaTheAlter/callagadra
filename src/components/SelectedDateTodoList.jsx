@@ -1,6 +1,5 @@
 import React from 'react'
 import useStoreDate from '../funcs/redux-logic/useStoreDate'
-
 import TodoItem from './todoItem'
 
 
@@ -16,12 +15,12 @@ export default function SelectedDateTodoList({ selectedDate }) {
           <TodoItem 
           key={todoID + Math.random()}
           todoID={todoID}
-          withEditButton/>
+          withRemoveButton
+          thisDateString={selectedDate}
+          />
           ))
         :
-        <h4 className="TodoListContainer-placeholder">
-          Start writing something!
-        </h4>
+        null
       }
     </div>
   )

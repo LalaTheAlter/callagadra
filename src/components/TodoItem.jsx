@@ -1,20 +1,20 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import formatTimeInterval from '../funcs/formatTimeInterval'
 import useStoreTodo from '../funcs/redux-logic/useStoreTodo'
 
-export default function TodoItem({ todoID, withEditButton}) {
+export default function TodoItem({ todoID, withRemoveButton, thisDateString}) {
   
   const {startTime, endTime, text} = useStoreTodo(todoID)
-  
-  const handleSelectionForEditing = () => { 
-    console.log("Event selected:", todoID)
-    document.dispatchEvent(new CustomEvent("newTodoItemSelected", {detail: todoID})) // goes to => todoBox
+  const dispatch = useDispatch()
+
+  const handleRemoving = () => {
+    console.log("Event removed:", todoID, thisDateString)
+    dispatch({type: 'REMOVE', payload: [todoID, thisDateString]})
   }
 
   return (
-    <div 
-      className='TodoItem'
-      >
+    <div className='TodoItem'>
       <div>
         {formatTimeInterval(startTime, endTime)}
       </div>
@@ -23,11 +23,11 @@ export default function TodoItem({ todoID, withEditButton}) {
         {text}
       </div>
 
-      {withEditButton && 
+      {withRemoveButton &&
         <button
-          onClick={handleSelectionForEditing}
+          onClick={handleRemoving}
           type="submit">
-          Edit
+          Remove
         </button>  
       }
     </div>
