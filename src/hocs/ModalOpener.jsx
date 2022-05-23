@@ -11,6 +11,7 @@ export default function ModalOpener({ buttonText, children }) {
     }
   }
 
+
   return (
     <>
       <button onClick={handleModal(true)}>

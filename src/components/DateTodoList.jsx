@@ -3,7 +3,7 @@ import useStoreDate from '../funcs/redux-logic/useStoreDate'
 import TodoItem from './todoItem'
 
 
-export default function SelectedDateTodoList({ selectedDate }) {
+export default function DateTodoList({ selectedDate }) {
 
   const arrayOfTodos = useStoreDate(selectedDate)
   

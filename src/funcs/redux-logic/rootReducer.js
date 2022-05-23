@@ -9,13 +9,13 @@ export default function rootReducer({todos, dates} = initialState, action) {
     case 'CREATE': // dispatch({type: ..., payload: [todoObj, dateString]})
       return {
         todos: writeTodo(todos, action.payload),
-        dates: applyTodo(dates, action.payload)
+        dates: applySingleTodo(dates, action.payload)
       }
 
-    case 'INSERT': // dispatch({type: ..., payload: [todoObj, dateString]})
+    case 'INSERT': // dispatch({type: ..., payload: [[todoID, todoID...], dateString]})
       return {
         todos,
-        dates: applyTodo(dates, action.payload)
+        dates: applyManyTodos(dates, action.payload)
       }
 
     case 'CHANGE': // dispatch({type: ..., payload: [todoObj, dateString]})
@@ -52,7 +52,7 @@ export default function rootReducer({todos, dates} = initialState, action) {
 }
 
 
-// UTILITY FUNCTIONS:
+// UTILITY FUNCTIONS FOR REDUCER:
 
 
 function writeTodo(todos, payload) {
@@ -64,23 +64,29 @@ function writeTodo(todos, payload) {
   }
 }
 
-function applyTodo(dates, payload) {
+function applySingleTodo(dates, payload) {
   const [{todoID}, selectedDate] = payload
-  const targetArray = dates[selectedDate] ? [...dates[selectedDate]] : []
-
-  if (!targetArray.includes(todoID)) {
-    targetArray.push(todoID)
-  }
+  const targetArray = getDate(selectedDate, dates)
   
   return {
     ...dates,
-    [selectedDate]: targetArray
+    [selectedDate]: targetArray.concat(todoID)
+  }
+}
+
+function applyManyTodos(dates, payload) {
+  const [todoIDarray, selectedDate] = payload
+  const targetArray = getDate(selectedDate, dates)
+  
+  return {
+    ...dates,
+    [selectedDate]: targetArray.concat(todoIDarray)
   }
 }
 
 function removeTodo(dates, payload) {
   const [todoID, selectedDate] = payload
-  const targetArray = dates[selectedDate] ? [...dates[selectedDate]] : []
+  const targetArray = getDate(selectedDate, dates)
 
   if (targetArray.includes(todoID)) {
     targetArray.splice(targetArray.indexOf(todoID), 1)
@@ -110,4 +116,10 @@ function clearAllInstances(dates, payload) {
   }
 
   return nextDates
+}
+
+// UTILITY FUNCTIONS FOR UTILITY FUNCTIONS:
+
+function getDate(neededDate, givenStore) {
+  return givenStore[neededDate] ? [...givenStore[neededDate]] : []
 }
