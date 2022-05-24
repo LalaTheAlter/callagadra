@@ -8,7 +8,7 @@ import formatTimeInterval from '../funcs/formatTimeInterval';
 import { useDispatch } from 'react-redux';
 
 
-export default function TodoForm({ selectedDate }) {
+export default function TodoWriteMenu({ selectedDate }) {
 
   const [start, setStart] = useState(convertMinutesToTimeString(0))
   const [end, setEnd] = useState(convertMinutesToTimeString(24*60))

@@ -1,9 +1,11 @@
 import { format } from 'date-fns'
 import React, { useEffect, useState } from 'react'
 import ModalOpener from '../hocs/ModalOpener'
-
-import SelectedDateViewer from './SelectedDateViewer'
-import TodoForm from './TodoForm'
+import DateLabel from './DateLabel'
+import DateTodoList from './DateTodoList'
+import TodoInsertMenu from './TodoInsertMenu'
+import TodoManageMenu from './TodoManageMenu'
+import TodoWriteMenu from './TodoWriteMenu'
 
 
 export default function TodoBox() {
@@ -26,11 +28,22 @@ export default function TodoBox() {
  
   return (
     <div className='todoBox'>
-      <SelectedDateViewer selectedDate={selectedDate} />
+      <div className='todoBox-dateBubble'>
+        <DateLabel selectedDate={selectedDate} /> 
+        <DateTodoList selectedDate={selectedDate} />
+        <ModalOpener modalClassName="notShadowed" buttonText={"[+]"}>
+          <TodoInsertMenu  selectedDate={selectedDate} />
+        </ModalOpener>
+      </div>
 
-      <ModalOpener buttonText="Manage Events">
-        <TodoForm selectedDate={selectedDate}/>
-      </ModalOpener>
+      <div className='todoBox-buttonBubble'>
+        <ModalOpener buttonText="Create New"> 
+          <TodoWriteMenu selectedDate={selectedDate}/>
+        </ModalOpener>
+        <ModalOpener buttonText="Manage Events">
+          <TodoManageMenu />
+        </ModalOpener>
+      </div>
     </div>
   )
 }

@@ -30,7 +30,7 @@ export default function rootReducer({todos, dates} = initialState, action) {
         dates: removeTodo(dates, action.payload)
       }
 
-    case 'DROP': // dispatch({type: ..., payload: todoID})
+    case 'DELETE': // dispatch({type: ..., payload: todoID})
       return {
         todos: deleteTodo(todos, action.payload),
         dates: clearAllInstances(dates, action.payload)

@@ -18,7 +18,7 @@ export default function TodoInsertMenu({ closeModal, selectedDate }) {
   const dispatch = useDispatch()
   const handleSubmit = (event) => {
     dispatch({type: 'INSERT', payload: [picked, selectedDate]})
-    closeModal(event)
+    closeModal(event) // this is taken from ModalOpener
   }
 
   return (
@@ -36,7 +36,10 @@ export default function TodoInsertMenu({ closeModal, selectedDate }) {
           : "There are no todos created yet, but you can write some!"
         }
       </div>
-      <button onClick={handleSubmit} type="submit">
+      <button 
+        disabled={picked.length < 1} 
+        onClick={handleSubmit} 
+        type="submit">
         appoint
       </button>
     </div>

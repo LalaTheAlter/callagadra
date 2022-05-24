@@ -9,7 +9,6 @@ export default function useStoreDate(dateString) {
     if(dateWithTodos) {
       dateWithTodos.sort(compareTimeIntervalsOfTodos)
     }
-    console.log(dateWithTodos)
     return dateWithTodos
   })
 }

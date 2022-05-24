@@ -1,34 +1,36 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
 import formatTimeInterval from '../funcs/formatTimeInterval'
 import useStoreTodo from '../funcs/redux-logic/useStoreTodo'
+import TodoDeleteButton from './TodoDeleteButton'
+import TodoRemoveButton from './TodoRemoveButton'
+import ModalOpener from '../hocs/ModalOpener'
 
-export default function TodoItem({ todoID, onClickFn, withRemoveButton, thisDateString}) {
+export default function TodoItem({ todoID, onClickFn, thisDateString, withRemoveButton, withDeleteButton, withChangeButton}) {
   
   const {startTime, endTime, text} = useStoreTodo(todoID)
-  const dispatch = useDispatch()
-
-  const handleRemoving = () => {
-    console.log("Event removed:", todoID, "at", thisDateString)
-    dispatch({type: 'REMOVE', payload: [todoID, thisDateString]})
-  }
 
   return (
     <div className='todoItem' onClick={onClickFn}>
-      <div>
-        {formatTimeInterval(startTime, endTime)}
+      <div className="todoItem-contentGroup">
+        <div>
+          {formatTimeInterval(startTime, endTime)}
+        </div>
+
+        <div>
+          {text}
+        </div>
       </div>
 
-      <div>
-        {text}
+      <div className="todoItem-buttonGroup">
+        {withRemoveButton &&
+          <TodoRemoveButton idToRemove={todoID} atDate={thisDateString} />
+        }
+        {withDeleteButton &&
+          <ModalOpener modalClassName="notShadowed" buttonText={"Delete"}>
+            <TodoDeleteButton idToDelete={todoID} />
+          </ModalOpener>
+        }
       </div>
-      {withRemoveButton &&
-        <button
-          onClick={handleRemoving}
-          type="submit">
-          Remove
-        </button>  
-      }
     </div>
   )
 }
