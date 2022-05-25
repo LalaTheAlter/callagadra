@@ -1,11 +1,10 @@
 import { hoursToMinutes, minutesToHours } from 'date-fns'
 import formatZeros from './formatZeros'
 
-export default function convertMinutesToTimeString(givenValue) {
-  let minutes = givenValue
-  let currentHours = minutesToHours(minutes)
-  let pastMinutes = hoursToMinutes(currentHours)
-  let currentMinutes = minutes - pastMinutes
+export default function convertMinutesToTimeString(givenMinutes) {
+  let currentClockHours = minutesToHours(givenMinutes)
+  let pastMinutes = hoursToMinutes(currentClockHours)
+  let currentClockMinutes = givenMinutes - pastMinutes
   
-  return `${currentHours}:${formatZeros(currentMinutes)}`
+  return `${currentClockHours}:${formatZeros(currentClockMinutes)}`
 }

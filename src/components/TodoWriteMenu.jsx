@@ -1,43 +1,64 @@
 
 import React, { useRef, useState } from 'react'
-import createNewTodo from '../funcs/createNewTodo'
+import createTodoObject from '../funcs/createTodoObject'
 import convertMinutesToTimeString from '../funcs/convertMinutesToTimeString'
 import Nouislider from 'nouislider-react'
 import "nouislider/distribute/nouislider.css";
 import formatTimeInterval from '../funcs/formatTimeInterval';
 import { useDispatch } from 'react-redux';
+import convertTimeStringToMinutes from '../funcs/convertTimeStringToMinutes';
+import useStoreTodo from '../funcs/redux-logic/useStoreTodo';
 
 
-export default function TodoWriteMenu({ selectedDate }) {
+export default function TodoWriteMenu({ idToEdit, selectedDate, closeModal }) {
+  
+  const MIN_TIME = 0  
+  const MAX_TIME = 24*60 // in minutes
+  
+  const todoToEdit = useStoreTodo(idToEdit)
+  const isInChangeMode = todoToEdit ? true : false
+  const DEFAULT_START_TIME = isInChangeMode ? convertTimeStringToMinutes(todoToEdit.startTime) : MIN_TIME
+  const DEFAULT_END_TIME = isInChangeMode ? convertTimeStringToMinutes(todoToEdit.endTime) : MAX_TIME
+  const DEFAULT_TEXT = isInChangeMode ? todoToEdit.text : null
 
-  const [start, setStart] = useState(convertMinutesToTimeString(0))
-  const [end, setEnd] = useState(convertMinutesToTimeString(24*60))
-  const text = useRef(null)
+  const [start, setStart] = useState(DEFAULT_START_TIME)
+  const [end, setEnd] = useState(DEFAULT_END_TIME)
+  console.log(todoToEdit, DEFAULT_TEXT)
+  const text = useRef(DEFAULT_TEXT)
+
   const dispatch = useDispatch()
-
   const handleTodoSubmit = (event) => { 
-    console.log(event)
-    const todo = createNewTodo(start, end, text.current.value)
-
-    setTimeout(() => {
+    if(isInChangeMode) {
+      const editedTodo = createTodoObject(start, end, text.current.value, idToEdit)
+      dispatch({type: 'CHANGE', payload: [editedTodo]})
+    } else {
+      const todo = createTodoObject(start, end, text.current.value)
       dispatch({ type: 'CREATE', payload: [todo, selectedDate]})
-    }, 0);
+    }
+
     event.preventDefault()
+    closeModal(event) // taken from ModalOpener
   }
 
   const handleTimeSlide = (render, handle, value) => {
-    setStart(convertMinutesToTimeString(value[0].toFixed()))
-    setEnd(convertMinutesToTimeString(value[1].toFixed()))
+    setStart(value[0].toFixed())
+    setEnd(value[1].toFixed())
   }
   
   return (
     <div className='todoForm'>
+      <div className="topLabel">
+        <h3>{isInChangeMode && idToEdit}</h3>
+      </div>
       <form onSubmit={handleTodoSubmit}>
         <label>
-          {formatTimeInterval(start, end)}
+          {formatTimeInterval( 
+            convertMinutesToTimeString(start),
+            convertMinutesToTimeString(end)
+          )}
           <Nouislider 
-            range={{ min: 0, max: 24*60 }} 
-            start={[0, 24*60]} 
+            range={{ min: MIN_TIME, max: MAX_TIME }} 
+            start={[ DEFAULT_START_TIME, DEFAULT_END_TIME]} 
             step={5}
             onSlide={handleTimeSlide}
             behaviour="drag"
@@ -45,26 +66,23 @@ export default function TodoWriteMenu({ selectedDate }) {
             connect
             />
         </label>
-
-        <label>
-          Describe your event:
-          <textarea 
-            ref={text}
-            name="todoText" 
-            // onChange={() => {}} // CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            
-            spellCheck="false"
-            minLength={3}
-            cols="30" 
-            rows="10"
-            tabIndex={1}
-            required />
-        </label>
+      
+        <textarea 
+          ref={text}
+          defaultValue={DEFAULT_TEXT}
+          name="todoText" 
+          placeholder={"Describe your event"}
+          spellCheck="false"
+          minLength={3}
+          cols="30" 
+          rows="10"
+          tabIndex={1}
+          required />
 
         <button
           tabIndex={2} 
           type="submit">
-          Set it
+          set
         </button>
       </form>
     </div>

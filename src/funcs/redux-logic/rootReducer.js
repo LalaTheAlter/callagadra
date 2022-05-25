@@ -18,7 +18,7 @@ export default function rootReducer({todos, dates} = initialState, action) {
         dates: applyManyTodos(dates, action.payload)
       }
 
-    case 'CHANGE': // dispatch({type: ..., payload: [todoObj, dateString]})
+    case 'CHANGE': // dispatch({type: ..., payload: [todoObj]})
       return {
         todos: writeTodo(todos, action.payload),
         dates
