@@ -6,16 +6,16 @@ const initialState = {
 
 export default function rootReducer({todos, dates} = initialState, action) {
   switch (action.type) {
-    case 'CREATE': // dispatch({type: ..., payload: [todoObj, dateString]})
+    case 'CREATE': // dispatch({type: ..., payload: [todoObj]})
       return {
         todos: writeTodo(todos, action.payload),
-        dates: applySingleTodo(dates, action.payload)
+        dates
       }
 
     case 'INSERT': // dispatch({type: ..., payload: [[todoID, todoID...], dateString]})
       return {
         todos,
-        dates: applyManyTodos(dates, action.payload)
+        dates: applyMultipleTodos(dates, action.payload)
       }
 
     case 'CHANGE': // dispatch({type: ..., payload: [todoObj]})
@@ -64,17 +64,17 @@ function writeTodo(todos, payload) {
   }
 }
 
-function applySingleTodo(dates, payload) {
-  const [{todoID}, selectedDate] = payload
-  const targetArray = getDate(selectedDate, dates)
+// function applySingleTodo(dates, payload) {
+//   const [{todoID}, selectedDate] = payload
+//   const targetArray = getDate(selectedDate, dates)
   
-  return {
-    ...dates,
-    [selectedDate]: targetArray.concat(todoID)
-  }
-}
+//   return {
+//     ...dates,
+//     [selectedDate]: targetArray.concat(todoID)
+//   }
+// }
 
-function applyManyTodos(dates, payload) {
+function applyMultipleTodos(dates, payload) {
   const [todoIDarray, selectedDate] = payload
   const targetArray = getDate(selectedDate, dates)
   

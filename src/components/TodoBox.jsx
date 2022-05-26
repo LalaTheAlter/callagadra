@@ -37,10 +37,10 @@ export default function TodoBox() {
       </div>
 
       <div className='todoBox-buttonBubble'>
-        <ModalOpener buttonText="Create New"> 
-          <TodoWriteMenu selectedDate={selectedDate}/>
+        <ModalOpener buttonText="Create new event"> 
+          <TodoWriteMenu />
         </ModalOpener>
-        <ModalOpener buttonText="Manage Events">
+        <ModalOpener buttonText="Manage all events">
           <TodoManageMenu />
         </ModalOpener>
       </div>

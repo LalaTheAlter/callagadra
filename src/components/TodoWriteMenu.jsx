@@ -10,7 +10,7 @@ import convertTimeStringToMinutes from '../funcs/convertTimeStringToMinutes';
 import useStoreTodo from '../funcs/redux-logic/useStoreTodo';
 
 
-export default function TodoWriteMenu({ idToEdit, selectedDate, closeModal }) {
+export default function TodoWriteMenu({ idToEdit, closeModal }) {
   
   const MIN_TIME = 0  
   const MAX_TIME = 24*60 // in minutes
@@ -33,7 +33,7 @@ export default function TodoWriteMenu({ idToEdit, selectedDate, closeModal }) {
       dispatch({type: 'CHANGE', payload: [editedTodo]})
     } else {
       const todo = createTodoObject(start, end, text.current.value)
-      dispatch({ type: 'CREATE', payload: [todo, selectedDate]})
+      dispatch({ type: 'CREATE', payload: [todo]})
     }
 
     event.preventDefault()
@@ -82,7 +82,9 @@ export default function TodoWriteMenu({ idToEdit, selectedDate, closeModal }) {
         <button
           tabIndex={2} 
           type="submit">
-          set
+          {isInChangeMode ? 
+          "Update this event" 
+          : "Create new event"}
         </button>
       </form>
     </div>
