@@ -1,10 +1,17 @@
 import React from 'react'
 
-export default function HeaderBar() {
+
+export default function Headerbar() {
   return (
-    <header>
-      <nav>
-        <h1>Callagadra</h1>
+    <header className='header'>
+      <nav className='header__bar'>
+        <img 
+          src="/favicon.png" 
+          alt="logo"
+          className='header__logo'
+          width={64}
+          height={64}/>
+
       </nav>
     </header>
   )

@@ -4,11 +4,10 @@ import ModalOpener from '../hocs/ModalOpener'
 import DateLabel from './DateLabel'
 import DateTodoList from './DateTodoList'
 import TodoInsertMenu from './TodoInsertMenu'
-import TodoManageMenu from './TodoManageMenu'
-import TodoWriteMenu from './TodoWriteMenu'
 
 
-export default function TodoBox() {
+
+export default function DateBox() {
   const [selectedDate, setSelectedDate] = useState(format(new Date(), 'y_M_d'))
   
   const handleDateSelect = (event) => {
@@ -27,23 +26,15 @@ export default function TodoBox() {
 
  
   return (
-    <div className='todoBox'>
-      <div className='todoBox-dateBubble'>
-        <DateLabel selectedDate={selectedDate} /> 
-        <DateTodoList selectedDate={selectedDate} />
-        <ModalOpener modalClassName="notShadowed" buttonText={"[+]"}>
-          <TodoInsertMenu  selectedDate={selectedDate} />
-        </ModalOpener>
-      </div>
-
-      <div className='todoBox-buttonBubble'>
-        <ModalOpener buttonText="Create new event"> 
-          <TodoWriteMenu />
-        </ModalOpener>
-        <ModalOpener buttonText="Manage all events">
-          <TodoManageMenu />
-        </ModalOpener>
-      </div>
+    <div className='date-box'>
+      <DateLabel className="date-box__todo-label" selectedDate={selectedDate} /> 
+      <DateTodoList className="date-box__todo-list" selectedDate={selectedDate} />
+      <ModalOpener 
+        buttonClassName="date-box__insert-btn" 
+        modalModifierClassName="modal--not-shadowed" 
+        buttonText={"[+]"}>
+        <TodoInsertMenu selectedDate={selectedDate} />
+      </ModalOpener>
     </div>
   )
 }

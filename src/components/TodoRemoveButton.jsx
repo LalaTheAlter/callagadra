@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 
-export default function TodoRemoveButton({ idToRemove, atDate}) {
+export default function TodoRemoveButton({ className, idToRemove, atDate}) {
   
   const dispatch = useDispatch()
 
@@ -12,6 +12,7 @@ export default function TodoRemoveButton({ idToRemove, atDate}) {
 
   return (
     <button
+      className={className}
       onClick={handleRemoving}
       type="submit">
       Remove

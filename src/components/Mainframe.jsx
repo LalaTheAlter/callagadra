@@ -1,15 +1,19 @@
 import React from 'react'
 import CalendarBox from './CalendarBox'
-import TodoBox from './TodoBox'
+import DateBox from './DateBox'
 
 export default function Mainframe() {
 
 
   
   return (
-    <main>
-      <CalendarBox />
-      <TodoBox />
+    <main className='mainframe'>
+      <div className="mainframe__column">
+        <CalendarBox />
+      </div>
+      <div className="mainframe__column">
+        <DateBox />
+      </div>
     </main>
   )
 }

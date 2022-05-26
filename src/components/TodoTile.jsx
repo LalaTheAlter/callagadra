@@ -5,7 +5,7 @@ import TodoItem from './todoItem'
 export default function TodoTile({ dateString }) {
 
   const arrayOfTodos = useStoreDate(dateString)
-  const day = dateString.split("_")[2] // dateString is like "yyyy_MM_dd"
+  const date = dateString.split("_")[2] // dateString is like "yyyy_MM_dd"
   
   const handleSelection = () => { 
     document.dispatchEvent(new CustomEvent("newDateSelected", {detail: dateString})) // goes to => todoBox
@@ -15,8 +15,8 @@ export default function TodoTile({ dateString }) {
     <div 
       onClick={handleSelection}
       tabIndex={-1}
-      className="calendarTile">
-      <div>
+      className="calendar-tile">
+      <div className="calendar-tile__todo-list">
         {         
           arrayOfTodos ? 
           arrayOfTodos.map((todoID) => (
@@ -27,8 +27,8 @@ export default function TodoTile({ dateString }) {
           : null
         }
       </div>
-      <div>
-        {day}
+      <div className="calendar-tile__date-label">
+        {date}
       </div>
     </div>
   );

@@ -22,8 +22,8 @@ export default function TodoInsertMenu({ closeModal, selectedDate }) {
   }
 
   return (
-    <div className='todoInsertMenu'>      
-      <div className="todoInsertMenu-List" >
+    <div className='insert-menu'>      
+      <div className='insert-menu__list' >
         {         
           availableTodos.length > 0 ? 
           availableTodos.map((todoID) => (
@@ -37,6 +37,7 @@ export default function TodoInsertMenu({ closeModal, selectedDate }) {
         }
       </div>
       <button 
+        className='insert-menu__submit-btn'
         disabled={picked.length < 1} 
         onClick={handleSubmit} 
         type="submit">

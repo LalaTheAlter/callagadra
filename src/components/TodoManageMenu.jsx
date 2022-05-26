@@ -7,11 +7,11 @@ export default function TodoManageMenu() {
   const allTodos = useAllStoreTodos()
   
   return (
-    <div className='todoManageMenu'>
-      <div className="topPanel">
+    <div className='menu menu--manageful'>
+      <div className="menu__top-label">
         <h3>your stored events:</h3>
       </div>
-      <div className="bottomList">
+      <div className="menu__main-content">
       {         
         allTodos.map((todoID) => (
           <TodoItem 

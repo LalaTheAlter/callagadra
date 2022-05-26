@@ -11,28 +11,36 @@ export default function TodoItem({ todoID, onClickFn, thisDateString, withRemove
   const {startTime, endTime, text} = useStoreTodo(todoID)
   
   return (
-    <div className='todoItem' onClick={onClickFn}>
-      <div className="todoItem-contentGroup">
-        <div>
+    <div className='todo-item' onClick={onClickFn}>
+      <div className="todo-item__content">
+        <div className="todo-item__time-display">
           {formatTimeInterval(startTime, endTime)}
         </div>
 
-        <div>
+        <div className="todo-item__text-display">
           {text}
         </div>
       </div>
 
-      <div className="todoItem-buttonGroup">
+      <div className="todo-item__btn-group">
         {withRemoveButton &&
-          <TodoRemoveButton idToRemove={todoID} atDate={thisDateString} />
+          <TodoRemoveButton 
+            className={"todo-item__btn todo-item__btn--remove"} 
+            idToRemove={todoID} 
+            atDate={thisDateString} />
         }
         {withChangeButton &&
-          <ModalOpener buttonText={"Edit"}>
+          <ModalOpener 
+            buttonClassName={"todo-item__btn todo-item__btn--change"} 
+            buttonText={"Edit"}>
             <TodoWriteMenu idToEdit={todoID} />
           </ModalOpener>
         }
         {withDeleteButton &&
-          <ModalOpener modalClassName="notShadowed" buttonText={"Delete"}>
+          <ModalOpener 
+            buttonClassName={"todo-item__btn todo-item__btn--delete"} 
+            modalModifierClassName="modal--not-shadowed" 
+            buttonText={"Delete"}>
             <TodoDeleteButton idToDelete={todoID} />
           </ModalOpener>
         }

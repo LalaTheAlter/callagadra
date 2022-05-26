@@ -3,9 +3,10 @@ import React from 'react'
 import formatZeros from '../funcs/formatZeros'
 
 
-export default function DateLabel({ selectedDate }) {
+export default function DateLabel({ selectedDate, className }) {
   return (
-    <h4>
+    <div className={className}>
+      <h4>
       {selectedDate ? 
       (selectedDate
         .split("_")
@@ -13,6 +14,7 @@ export default function DateLabel({ selectedDate }) {
         .reverse() // originally it's YYYY.MM.DD, which is more convinient for storing the data (looks more organized). 
         .join("."))
       : "Choose a day"}
-    </h4>
+      </h4>
+    </div>
   )
 }

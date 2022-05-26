@@ -12,10 +12,16 @@ export default function MonthPicker({selectedMonth, cbParent}) {
   }
   
   return (
-    <div className='monthPicker'>
-      <h2>{format(selectedMonth, "MMMM yyyy")}</h2>
-      <button onClick={selectPreviousMonth}>{"<"}</button>
-      <button onClick={selectNextMonth}>{">"}</button>
+    <div className='month-picker'>
+      <h2 className='month-picker__month-label'>
+        {format(selectedMonth, "MMMM yyyy")}
+      </h2>
+      <button className='month-picker__move-btn' onClick={selectPreviousMonth}>
+        {"<"}
+      </button>
+      <button className='month-picker__move-btn' onClick={selectNextMonth}>
+        {">"}
+      </button>
     </div>
   )
 }

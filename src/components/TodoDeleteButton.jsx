@@ -12,12 +12,16 @@ export default function TodoDeleteButton({ idToDelete, closeModal }) {
   }
 
   return (
-    <div className='TodoDeleteButton-wrapper'>
+    <div className='delete-alert'>
       <div>
-        <h4>Do you really want to delete this event?</h4>
+        <h4 className='delete-alert__text'>
+          Do you really want to delete this event?
+        </h4>
       </div>
       <div>
-        <button onClick={handleDeletion}> Yes </button>
+        <button className='delete-alert__submit-btn' onClick={handleDeletion}>
+          Yes 
+        </button>
       </div>
     </div>
   )

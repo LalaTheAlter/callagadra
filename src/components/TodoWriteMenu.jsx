@@ -46,47 +46,57 @@ export default function TodoWriteMenu({ idToEdit, closeModal }) {
   }
   
   return (
-    <div className='todoForm'>
-      <div className="topLabel">
+    <div className={`menu menu--${isInChangeMode ? "changeful" : "createful"}`}>
+      <div className="menu__top-label">
         <h3>{isInChangeMode && idToEdit}</h3>
       </div>
-      <form onSubmit={handleTodoSubmit}>
-        <label>
-          {formatTimeInterval( 
-            convertMinutesToTimeString(start),
-            convertMinutesToTimeString(end)
-          )}
-          <Nouislider 
-            range={{ min: MIN_TIME, max: MAX_TIME }} 
-            start={[ DEFAULT_START_TIME, DEFAULT_END_TIME]} 
-            step={5}
-            onSlide={handleTimeSlide}
-            behaviour="drag"
-            tabIndex={1}
-            connect
-            />
-        </label>
       
-        <textarea 
-          ref={text}
-          defaultValue={DEFAULT_TEXT}
-          name="todoText" 
-          placeholder={"Describe your event"}
-          spellCheck="false"
-          minLength={3}
-          cols="30" 
-          rows="10"
-          tabIndex={1}
-          required />
+      <div className="menu_main-content">
+        <form 
+          onSubmit={handleTodoSubmit}
+          className='todo-form'
+        >
+          <label className='todo-form__slider-label'>
+            {formatTimeInterval( 
+              convertMinutesToTimeString(start),
+              convertMinutesToTimeString(end)
+            )}
+            <Nouislider 
+              range={{ min: MIN_TIME, max: MAX_TIME }} 
+              start={[ DEFAULT_START_TIME, DEFAULT_END_TIME]} 
+              step={5}
+              className="todo-form__slider"
+              onSlide={handleTimeSlide}
+              behaviour="drag"
+              tabIndex={1}
+              connect
+              />
+          </label>
+        
+          <textarea 
+            ref={text}
+            defaultValue={DEFAULT_TEXT}
+            name="todoText" 
+            className='todo-form__text-field'
+            placeholder={"Describe your event"}
+            spellCheck="false"
+            minLength={3}
+            cols="30" 
+            rows="10"
+            tabIndex={1}
+            required />
 
-        <button
-          tabIndex={2} 
-          type="submit">
-          {isInChangeMode ? 
-          "Update this event" 
-          : "Create new event"}
-        </button>
-      </form>
+          <button
+            tabIndex={2} 
+            type="submit"
+            className={`todo-form__submit-btn todo-form__submit-btn--${isInChangeMode ? "changeful" : "createful"}`}
+            >
+            {isInChangeMode ? 
+            "Update this event" 
+            : "Create new event"}
+          </button>
+        </form>
+      </div>
     </div>
   )
 }
