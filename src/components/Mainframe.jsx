@@ -1,3 +1,4 @@
+import './Mainframe.scss'
 import React from 'react'
 import CalendarBox from './CalendarBox'
 import DateBox from './DateBox'

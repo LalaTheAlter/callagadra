@@ -4,7 +4,7 @@
   "description": "get-and-go template for building a classic react app via webpack. Preset includes: Sass, PostCSS, Babel, ESLint, Jest",
   "main": "index.js",
   "scripts": {
-    "slint": "npx stylelint \"**/*.scss\"",
+    "slint": "npx stylelint \"**/*.scss\" --cache --fix",
     "dev": "cross-env NODE_ENV=development webpack",
     "build": "cross-env NODE_ENV=production webpack",
     "watch": "cross-env NODE_ENV=development  --FAST_REFRESH=true webpack --watch ",

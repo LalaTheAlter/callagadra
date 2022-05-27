@@ -1,3 +1,4 @@
+import './CalendarGrid.scss'
 import { format } from 'date-fns';
 import { setDay } from 'date-fns/esm';
 import React from 'react'

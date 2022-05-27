@@ -36,7 +36,7 @@ module.exports = {
       
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].[id].css',
+      filename: '[name].css',
     }),
   ],
   performance: { hints: false },

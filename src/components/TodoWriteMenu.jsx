@@ -1,4 +1,4 @@
-
+import './TodoWriteMenu.scss'
 import React, { useRef, useState } from 'react'
 import createTodoObject from '../funcs/createTodoObject'
 import convertMinutesToTimeString from '../funcs/convertMinutesToTimeString'

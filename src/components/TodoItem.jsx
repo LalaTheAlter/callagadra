@@ -1,3 +1,4 @@
+import './TodoItem.scss'
 import React from 'react'
 import formatTimeInterval from '../funcs/formatTimeInterval'
 import useStoreTodo from '../funcs/redux-logic/useStoreTodo'

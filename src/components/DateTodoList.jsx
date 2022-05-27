@@ -1,3 +1,4 @@
+import './DateTodoList.scss'
 import React from 'react'
 import useStoreDate from '../funcs/redux-logic/useStoreDate'
 import TodoItem from './todoItem'

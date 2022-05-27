@@ -1,3 +1,4 @@
+import './MonthPicker.scss'
 import React from 'react'
 import { add, format, sub } from 'date-fns'
 
