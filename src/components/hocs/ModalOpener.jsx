@@ -1,5 +1,5 @@
 import Portal from "./Portal";
-
+import "./ModalOpener.scss"
 import React, { useState } from 'react'
 
 export default function ModalOpener({ modalModifierClassName = "modal--shadowed", buttonDisabled, buttonText, buttonClassName, children }) {
