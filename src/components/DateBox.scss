@@ -1,0 +1,28 @@
+
+
+.date-box {
+  // border: 2px solid red;
+
+  border-radius: 1.5em;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  height: 100%;
+  &__todo-label {
+    text-align: center;
+    height: 15%;
+    background-color: aliceblue;
+  }
+  &__todo-list {
+    height: 75%;
+    padding: 1em;
+  }
+  &__insert-btn {
+    padding: 10px;
+    height: 2em;
+    width: 100%;
+    border: none;
+  }
+}

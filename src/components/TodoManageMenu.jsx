@@ -17,7 +17,7 @@ export default function TodoManageMenu() {
         allTodos.map((todoID) => (
           <TodoItem 
           todoID={todoID} 
-          key={todoID + Math.random()}
+          key={todoID}
           withDeleteButton
           withChangeButton
           />

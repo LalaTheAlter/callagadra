@@ -4,7 +4,7 @@ import formatTimeInterval from '../funcs/formatTimeInterval'
 import useStoreTodo from '../funcs/redux-logic/useStoreTodo'
 import TodoDeleteButton from './TodoDeleteButton'
 import TodoRemoveButton from './TodoRemoveButton'
-import ModalOpener from '../hocs/ModalOpener'
+import ModalOpener from './hocs/ModalOpener'
 import TodoWriteMenu from './TodoWriteMenu'
 
 export default function TodoItem({ todoID, onClickFn, thisDateString, withRemoveButton, withDeleteButton, withChangeButton}) {

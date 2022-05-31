@@ -1,4 +1,4 @@
-import './Datelabel.scss'
+
 import React from 'react'
 import formatZeros from '../funcs/formatZeros'
 

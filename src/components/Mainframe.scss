@@ -1,0 +1,15 @@
+.mainframe {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  margin: 0 0 3em;
+  box-sizing: border-box;
+  &__column-left {
+    width: 75%;  
+  }
+  &__column-right {
+    width: 20%;  
+  }
+
+}

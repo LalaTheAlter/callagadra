@@ -30,11 +30,11 @@ export default function TodoInsertMenu({ closeModal, selectedDate }) {
           availableTodos.map((todoID) => (
             <TodoItem 
             todoID={todoID} 
-            key={todoID + Math.random()}
+            key={todoID}
             onClickFn={pick(todoID)}
             />
           )) 
-          : "There are no todos created yet, but you can write some!"
+          : "No todos are available for this date"
         }
       </div>
       <button 

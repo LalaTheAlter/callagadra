@@ -4,7 +4,7 @@ import CalendarGrid from './CalendarGrid'
 import MonthPicker from './MonthPicker'
 import TodoManageMenu from './TodoManageMenu'
 import TodoWriteMenu from './TodoWriteMenu'
-import ModalOpener from '../hocs/ModalOpener'
+import ModalOpener from './hocs/ModalOpener'
 
 export default function CalendarBox() {
   
@@ -12,16 +12,22 @@ export default function CalendarBox() {
 
   return (
     <div className="calendar-box">
-      <div className="calendar-box__tool-box">
-        <MonthPicker selectedMonth={month} cbParent={setMonth} />
-        <ModalOpener buttonClassName="header-bar__menu-btn" buttonText="Create new event"> 
-            <TodoWriteMenu />
+      <div className="calendar-box__tool-bar">
+        <div className="calendar-box__tool-box">
+          <MonthPicker selectedMonth={month} cbParent={setMonth} />
+        </div>
+
+        <div className="calendar-box__tool-box">
+          <ModalOpener buttonClassName="calendar-box__menu-btn" buttonText="Create new event"> 
+              <TodoWriteMenu />
+            </ModalOpener>
+          <ModalOpener buttonClassName="calendar-box__menu-btn" buttonText="Manage all events">
+            <TodoManageMenu />
           </ModalOpener>
-        <ModalOpener buttonClassName="header-bar__menu-btn" buttonText="Manage all events">
-          <TodoManageMenu />
-        </ModalOpener>
+        </div>
       </div>
-      <div className='calendar-box__content-box'>
+      
+      <div className='calendar-box__content'>
         <CalendarGrid selectedMonth={month} /> 
       </div>
     </div>

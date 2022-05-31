@@ -1,7 +1,7 @@
 import './DateBox.scss'
 import { format } from 'date-fns'
 import React, { useEffect, useState } from 'react'
-import ModalOpener from '../hocs/ModalOpener'
+import ModalOpener from './hocs/ModalOpener'
 import DateLabel from './DateLabel'
 import DateTodoList from './DateTodoList'
 import TodoInsertMenu from './TodoInsertMenu'

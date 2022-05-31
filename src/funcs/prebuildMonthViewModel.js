@@ -1,13 +1,25 @@
-import { eachDayOfInterval, endOfMonth, format, nextSunday, previousMonday, startOfMonth } from "date-fns"
+import { eachDayOfInterval, endOfMonth, format, nextMonday, nextSunday, previousMonday, startOfMonth } from "date-fns"
 
-export default function prebuildMonthViewModel(selectedDate) {
-  
-  const monthView = eachDayOfInterval({
-    start: previousMonday(startOfMonth(selectedDate)),
-    end: nextSunday(endOfMonth(selectedDate))
-  }).map((date) => format(date, "y_M_d"))
+export default function prebuildMonthViewModel(selectedMonth) {
+  const firstDay = startOfMonth(selectedMonth)
+  const lastDay = endOfMonth(selectedMonth)
 
-  return monthView
+  const monthViewModel = eachDayOfInterval({
+    start: previousMonday(firstDay),
+    end: nextSunday(lastDay) 
+  })
+
+  if(monthViewModel.length < (7 * 6)) {
+    monthViewModel.push(...eachDayOfInterval({
+      start: nextMonday(lastDay), 
+      end: nextSunday(nextSunday(lastDay))
+    }))
+    // add an additional week to the model if it's too short;
+    // improves UI consistency as some month models are 6-weeks long, 
+    // while others are only 5-weeks long.
+  }
+
+  return monthViewModel.map((date) => format(date, "y_M_d"))
 
   // ================================
   // MEMORIAL OF BLINDED BRAVERY,
