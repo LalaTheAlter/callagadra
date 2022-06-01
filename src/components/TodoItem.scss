@@ -1,0 +1,75 @@
+@use "sass:list";
+
+
+.todo-item {
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 0.25em;
+
+
+  &__text-content {
+
+  }
+
+  &__top-panel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__time-display {
+    align-self: flex-start;
+  }
+
+  &__btn-group {
+    align-self: flex-end;
+  }
+
+  &__btn {
+    padding: 0;
+    &--change {
+
+    }
+    &--remove {
+
+    }
+    &--delete {
+
+    }
+  }
+
+
+
+}
+
+
+$time-colors: (
+  #cc6698, // 0:00-1:59
+  #0869ad, // 2:00-3:59
+  #ff8300, // 4:00-5:59
+  #7A86b8, // 6:00-7:59
+  #71bf45, // 8:00-9:59
+  #f05133, // 10:00-11:59
+  #2aa9e0, // 12:00-13:59
+  #71bf45, // 14:00-15:59
+  #ef0e39, // 16:00-17:59
+  #9e79d7, // 18:00-19:59
+  #2aa9e0, // 20:00-21:59
+  #ef0e39, // 22:00-23:59
+  // 12 colors for each hour-block
+);
+
+@for $i from 1 through 12 {
+  @for $j from $i through 12 {
+    $start-color: nth($time-colors, $i);
+    $end-color: nth($time-colors, $j);
+
+    .todo-item--time-theme-#{$i}-#{$j} { 
+      box-shadow: 
+        -1px -1px 5px $start-color,
+        1px 1px 5px $end-color;
+    }
+  }
+}

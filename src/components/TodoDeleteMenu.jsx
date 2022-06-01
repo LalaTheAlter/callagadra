@@ -1,9 +1,9 @@
-import './TodoDeleteButton.scss'
+import './TodoDeleteMenu.scss'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 
 
-export default function TodoDeleteButton({ idToDelete, closeModal }) {
+export default function TodoDeleteMenu({ idToDelete, closeModal }) {
   const dispatch = useDispatch()
 
   const handleDeletion = (event) => {

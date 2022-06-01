@@ -2,7 +2,7 @@ import './TodoRemoveButton.scss'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 
-export default function TodoRemoveButton({ className, idToRemove, atDate}) {
+export default function TodoRemoveButton({ className, idToRemove, atDate, buttonText}) {
   
   const dispatch = useDispatch()
 
@@ -16,7 +16,7 @@ export default function TodoRemoveButton({ className, idToRemove, atDate}) {
       className={className}
       onClick={handleRemoving}
       type="submit">
-      Remove
+      {buttonText}
     </button>  
   )
 }

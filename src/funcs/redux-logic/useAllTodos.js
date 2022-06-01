@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 
-export default function useAllStoreTodos() {
+export default function useAllTodos() {
   return useSelector(store => takeEveryTodoID(store.todos))
 }
 

@@ -7,7 +7,7 @@ import "nouislider/distribute/nouislider.css";
 import formatTimeInterval from '../funcs/formatTimeInterval';
 import { useDispatch } from 'react-redux';
 import convertTimeStringToMinutes from '../funcs/convertTimeStringToMinutes';
-import useStoreTodo from '../funcs/redux-logic/useStoreTodo';
+import useTodo from '../funcs/redux-logic/useTodo';
 
 
 export default function TodoWriteMenu({ idToEdit, closeModal }) {
@@ -15,7 +15,7 @@ export default function TodoWriteMenu({ idToEdit, closeModal }) {
   const MIN_TIME = 0  
   const MAX_TIME = 24*60 // in minutes
   
-  const todoToEdit = useStoreTodo(idToEdit)
+  const todoToEdit = useTodo(idToEdit)
   const isInChangeMode = todoToEdit ? true : false
   const DEFAULT_START_TIME = isInChangeMode ? convertTimeStringToMinutes(todoToEdit.startTime) : MIN_TIME
   const DEFAULT_END_TIME = isInChangeMode ? convertTimeStringToMinutes(todoToEdit.endTime) : MAX_TIME
@@ -23,7 +23,6 @@ export default function TodoWriteMenu({ idToEdit, closeModal }) {
 
   const [start, setStart] = useState(DEFAULT_START_TIME)
   const [end, setEnd] = useState(DEFAULT_END_TIME)
-  console.log(todoToEdit, DEFAULT_TEXT)
   const text = useRef(DEFAULT_TEXT)
 
   const dispatch = useDispatch()

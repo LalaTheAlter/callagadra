@@ -1,50 +1,53 @@
 import './TodoItem.scss'
 import React from 'react'
 import formatTimeInterval from '../funcs/formatTimeInterval'
-import useStoreTodo from '../funcs/redux-logic/useStoreTodo'
-import TodoDeleteButton from './TodoDeleteButton'
+import useTodo from '../funcs/redux-logic/useTodo'
+import TodoDeleteMenu from './TodoDeleteMenu'
 import TodoRemoveButton from './TodoRemoveButton'
 import ModalOpener from './hocs/ModalOpener'
 import TodoWriteMenu from './TodoWriteMenu'
+import clampTimeIntoColorMod from '../funcs/clampTimeIntoColorMod'
 
-export default function TodoItem({ todoID, onClickFn, thisDateString, withRemoveButton, withDeleteButton, withChangeButton}) {
-  
-  const {startTime, endTime, text} = useStoreTodo(todoID)
-  
+export default function TodoItem({ todoID, onClickFn, dateForRemoveButton, withDeleteButton, withChangeButton}) {
+  const {startTime, endTime, text} = useTodo(todoID)
+  const colorMod = clampTimeIntoColorMod(startTime, endTime)
+
   return (
-    <div className='todo-item' onClick={onClickFn}>
-      <div className="todo-item__content">
+    <div className={`todo-item todo-item--time-theme-${colorMod}`} onClick={onClickFn}>
+      <div className="todo-item__top-panel">
         <div className="todo-item__time-display">
           {formatTimeInterval(startTime, endTime)}
         </div>
 
-        <div className="todo-item__text-display">
-          {text}
+        <div className="todo-item__btn-group">
+          {dateForRemoveButton &&
+            <TodoRemoveButton 
+              className={"todo-item__btn todo-item__btn--remove"} 
+              idToRemove={todoID} 
+              atDate={dateForRemoveButton}
+              buttonText={"⨯"} />
+          }
+          {withChangeButton &&
+            <ModalOpener 
+              buttonClassName={"todo-item__btn todo-item__btn--change"} 
+              buttonText={"✎"}>
+              <TodoWriteMenu idToEdit={todoID} />
+            </ModalOpener>
+          }
+          {withDeleteButton &&
+            <ModalOpener 
+              buttonClassName={"todo-item__btn todo-item__btn--delete"} 
+              modalModifierClassName="modal--not-shadowed" 
+              buttonText={"💀"}>
+              <TodoDeleteMenu idToDelete={todoID} />
+            </ModalOpener>
+          }
         </div>
       </div>
+   
 
-      <div className="todo-item__btn-group">
-        {withRemoveButton &&
-          <TodoRemoveButton 
-            className={"todo-item__btn todo-item__btn--remove"} 
-            idToRemove={todoID} 
-            atDate={thisDateString} />
-        }
-        {withChangeButton &&
-          <ModalOpener 
-            buttonClassName={"todo-item__btn todo-item__btn--change"} 
-            buttonText={"Edit"}>
-            <TodoWriteMenu idToEdit={todoID} />
-          </ModalOpener>
-        }
-        {withDeleteButton &&
-          <ModalOpener 
-            buttonClassName={"todo-item__btn todo-item__btn--delete"} 
-            modalModifierClassName="modal--not-shadowed" 
-            buttonText={"Delete"}>
-            <TodoDeleteButton idToDelete={todoID} />
-          </ModalOpener>
-        }
+      <div className="todo-item__text-content">
+        {text}
       </div>
     </div>
   )

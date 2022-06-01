@@ -1,11 +1,11 @@
 import './CalendarTile.scss'
 import React from 'react'
-import useStoreDate from '../funcs/redux-logic/useStoreDate'
-import TodoItem from './todoItem'
+import useTodosInDate from '../funcs/redux-logic/useTodosInDate'
+import TodoList from './TodoList'
 
 export default function CalendarTile({ dateString }) {
 
-  const arrayOfTodos = useStoreDate(dateString)
+  const arrayOfTodos = useTodosInDate(dateString)
   const firstTodos = arrayOfTodos.slice(0, 3)
   const restTodosCount = arrayOfTodos.slice(3).length
   const [, month, date] = dateString.split("_")  // dateString is like "yyyy_MM_dd"
@@ -18,18 +18,11 @@ export default function CalendarTile({ dateString }) {
     <div 
       onClick={handleSelection}
       tabIndex={-1}
-      className={`calendar-tile calendar-tile--month-${month}`}>
+      className={`calendar-tile calendar-tile--month-theme-${month}`}>
       <div className="calendar-tile__todo-list">
-        {         
-          firstTodos ? 
-          firstTodos.map((todoID) => (
-            <TodoItem 
-            todoID={todoID} 
-            key={todoID} />
-          )) 
-          : null
-        }
+        <TodoList items={firstTodos} />
       </div>
+
       <div className="calendar-tile__bottom-panel">
         <div className="calendar-tile__rest-indicator">
           {!!restTodosCount && `+ ${restTodosCount} more`}

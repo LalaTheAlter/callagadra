@@ -1,5 +1,6 @@
 
 .calendar-tile {
+  background-color: aliceblue;
   border: outset 1px;
   min-height: 100%;
   min-width: 100%;
@@ -7,6 +8,9 @@
   box-sizing: border-box;
   &__todo-list {
     height: 85%;
+  }
+  &__list-item {
+    margin-bottom: 5%;
   }
 
   &__bottom-panel {
@@ -16,7 +20,7 @@
     justify-content: space-between;
   }
   &__rest-indicator {
-
+    font-style: italic;
   }
   &__date-label {
 
@@ -26,7 +30,7 @@
 
 
 
-$colors: (
+$month-colors: (
   #cc6698, // Jan 
   #0869ad, // Feb
   #ff8300, // Mar
@@ -42,8 +46,8 @@ $colors: (
   // 12 colors for each month
 );
 @for $i from 1 through 12 {
-  $color: nth($colors, $i);
-  .calendar-tile--month-#{$i} { 
-     background-color: $color;
+  $month-color: nth($month-colors, $i);
+  .calendar-tile--month-theme-#{$i} { 
+      background-color: $month-color;
     }
 }
