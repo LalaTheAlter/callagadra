@@ -18,7 +18,9 @@ export default function CalendarTile({ dateString }) {
     <div 
       onClick={handleSelection}
       tabIndex={-1}
-      className={`calendar-tile calendar-tile--month-theme-${month}`}>
+      className={`calendar-tile calendar-tile--month-theme-${month}`}
+      >
+
       <div className="calendar-tile__todo-list">
         <TodoList items={firstTodos} />
       </div>

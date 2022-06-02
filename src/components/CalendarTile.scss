@@ -4,20 +4,23 @@
   border: outset 1px;
   min-height: 100%;
   min-width: 100%;
-  padding: 0.4em 0.4em 0 0.4em;
+
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   &__todo-list {
-    height: 85%;
-  }
-  &__list-item {
-    margin-bottom: 5%;
+    // height: 80%;
+    // margin-bottom: 5%;
   }
 
   &__bottom-panel {
-    height: 15%;
+    height: max-content;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: nowrap;
   }
   &__rest-indicator {
     font-style: italic;
@@ -48,6 +51,9 @@ $month-colors: (
 @for $i from 1 through 12 {
   $month-color: nth($month-colors, $i);
   .calendar-tile--month-theme-#{$i} { 
-      background-color: $month-color;
+      
+    .calendar-tile__bottom-panel {
+        background-color: rgba($month-color, 0.3);
+      }
     }
 }

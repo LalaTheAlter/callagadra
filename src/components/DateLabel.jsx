@@ -3,9 +3,8 @@ import React from 'react'
 import formatZeros from '../funcs/formatZeros'
 
 
-export default function DateLabel({ selectedDate, className }) {
+export default function DateLabel({ selectedDate }) {
   return (
-    <div className={className}>
       <h4>
       {selectedDate ? 
       (selectedDate
@@ -13,8 +12,7 @@ export default function DateLabel({ selectedDate, className }) {
         .map((el) => formatZeros(el)) // just formatting the date for it to have zeros
         .reverse() // originally it's YYYY.MM.DD, which is more convinient for storing the data (looks more organized). 
         .join("."))
-      : "Choose a day"}
+      : "DD.MM.YYYY"}
       </h4>
-    </div>
   )
 }

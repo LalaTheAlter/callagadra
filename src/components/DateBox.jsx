@@ -26,7 +26,9 @@ export default function DateBox() {
  
   return (
     <div className='date-box'>
-      <DateLabel className="date-box__date-label" selectedDate={selectedDate} /> 
+      <div className="date-box__date-label">
+        <DateLabel selectedDate={selectedDate} />
+      </div>
     
       <div className="date-box__todo-list">
         <TodoList items={arrayOfTodos} dateForRemoveButton={selectedDate}/>
@@ -34,7 +36,6 @@ export default function DateBox() {
 
       <ModalOpener 
         buttonClassName="date-box__insert-btn" 
-        modalModifierClassName="modal--not-shadowed" 
         buttonText={"➕"}>
         <TodoInsertMenu selectedDate={selectedDate} />
       </ModalOpener>

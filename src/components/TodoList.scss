@@ -1,5 +1,11 @@
 .todo-list {
+  padding: 5%;
+  height: fit-content;
+  // display: flex;
+  // flex-direction: column;
   &__list-item {
     margin-bottom: 0.5em;
+    width: 100%;
+
   }
 }

@@ -19,7 +19,8 @@ export default function TodoItem({ todoID, onClickFn, dateForRemoveButton, withD
           {formatTimeInterval(startTime, endTime)}
         </div>
 
-        <div className="todo-item__btn-group">
+        {(dateForRemoveButton || withChangeButton || withDeleteButton) &&
+          <div className="todo-item__btn-group">
           {dateForRemoveButton &&
             <TodoRemoveButton 
               className={"todo-item__btn todo-item__btn--remove"} 
@@ -38,11 +39,12 @@ export default function TodoItem({ todoID, onClickFn, dateForRemoveButton, withD
             <ModalOpener 
               buttonClassName={"todo-item__btn todo-item__btn--delete"} 
               modalModifierClassName="modal--not-shadowed" 
-              buttonText={"💀"}>
+              buttonText={"💣"}>
               <TodoDeleteMenu idToDelete={todoID} />
             </ModalOpener>
           }
         </div>
+        }
       </div>
    
 

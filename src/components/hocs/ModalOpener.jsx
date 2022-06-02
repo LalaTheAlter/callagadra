@@ -2,7 +2,7 @@ import Portal from "./Portal";
 import "./ModalOpener.scss"
 import React, { useState } from 'react'
 
-export default function ModalOpener({ modalModifierClassName = "modal--shadowed", buttonDisabled, buttonText, buttonClassName, children }) {
+export default function ModalOpener({ buttonDisabled, buttonText, buttonClassName, children }) {
   const [isModalOpened, setModal] = useState(false)
   
   const handleModal = (mode) => (event) => {
@@ -18,8 +18,8 @@ export default function ModalOpener({ modalModifierClassName = "modal--shadowed"
         {buttonText}
       </button>
       {isModalOpened && 
-        <Portal>
-          <div className={`modal ${modalModifierClassName}`} onClick={handleModal(false)}>
+        <Portal onClick={handleModal(false)} className={`modal`}>
+          <div className={`modal__window`}>
             {React.Children.map(children, (reactEl) => {
               return {
                 ...reactEl,

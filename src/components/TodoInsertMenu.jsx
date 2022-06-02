@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import useTodosUnusedInDate from '../funcs/redux-logic/useTodosUnusedInDate'
 import TodoList from './TodoList'
+import DateLabel from './DateLabel'
 
 
 export default function TodoInsertMenu({ closeModal, selectedDate }) {
@@ -24,7 +25,11 @@ export default function TodoInsertMenu({ closeModal, selectedDate }) {
   }
 
   return (
-    <div className='insert-menu'>      
+    <div className='insert-menu'>     
+      <div className="insert-menu__date-label">
+        <DateLabel selectedDate={selectedDate} />
+      </div> 
+
       <div className='insert-menu__list' >
         <TodoList 
           items={availableTodos} 
@@ -32,12 +37,13 @@ export default function TodoInsertMenu({ closeModal, selectedDate }) {
           placeholderText={"No todos are available for this date"} 
           />
       </div>
+      
       <button 
         className='insert-menu__submit-btn'
         disabled={picked.length < 1} 
         onClick={handleSubmit} 
         type="submit">
-        appoint
+        Appoint selected events
       </button>
     </div>
   )
