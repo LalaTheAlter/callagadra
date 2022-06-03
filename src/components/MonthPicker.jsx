@@ -14,15 +14,19 @@ export default function MonthPicker({selectedMonth, cbParent}) {
   
   return (
     <div className='month-picker'>
-      <h2 className='month-picker__month-label'>
-        {format(selectedMonth, "MMMM yyyy")}
+      <div className="month-picker__btn-group">
+        <button className='month-picker__move-btn' onClick={selectPreviousMonth}>
+          {"<"}
+        </button>
+        <button className='month-picker__move-btn' onClick={selectNextMonth}>
+          {">"}
+        </button>
+      </div>
+      
+      <h2 className="month-picker__month-label">
+        {format(selectedMonth, "MMMM yyyy")}
       </h2>
-      <button className='month-picker__move-btn' onClick={selectPreviousMonth}>
-        {"<"}
-      </button>
-      <button className='month-picker__move-btn' onClick={selectNextMonth}>
-        {">"}
-      </button>
+
     </div>
   )
 }

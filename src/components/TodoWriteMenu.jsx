@@ -1,4 +1,5 @@
-import './TodoWriteMenu.scss'
+import './TodoForm.scss'
+import './TodoMenu.scss'
 import React, { useRef, useState } from 'react'
 import createTodoObject from '../funcs/createTodoObject'
 import convertMinutesToTimeString from '../funcs/convertMinutesToTimeString'
@@ -45,12 +46,12 @@ export default function TodoWriteMenu({ idToEdit, closeModal }) {
   }
   
   return (
-    <div className={`menu menu--${isInChangeMode ? "changeful" : "createful"}`}>
+    <div className="menu">
       <div className="menu__top-label">
-        <h3>{isInChangeMode && idToEdit}</h3>
+        <h3>{isInChangeMode ? `event #${idToEdit}` : "New event"}</h3>
       </div>
       
-      <div className="menu_main-content">
+      <div className="menu__main-content">
         <form 
           onSubmit={handleTodoSubmit}
           className='todo-form'
@@ -88,11 +89,9 @@ export default function TodoWriteMenu({ idToEdit, closeModal }) {
           <button
             tabIndex={2} 
             type="submit"
-            className={`todo-form__submit-btn todo-form__submit-btn--${isInChangeMode ? "changeful" : "createful"}`}
+            className={"todo-form__submit-btn"}
             >
-            {isInChangeMode ? 
-            "Update this event" 
-            : "Create new event"}
+            {isInChangeMode ? "Update" : "Submit"}
           </button>
         </form>
       </div>

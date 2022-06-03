@@ -1,2 +1,30 @@
-$font-size: 2em;
+$background-color: aliceblue !default;
+$accent-color: blue !default;
+$shadow-color: black !default;
+$text-color: #241C13 !default;
+$accent-text-color: white !default;
+$body-color: white !default;
 
+$frame-box-shadow: 0 0 5px $shadow-color !default;
+$btn-box-shadow: 0 1px 2px $shadow-color !default;
+$frame-border-radius: 1.5em !default;
+
+body {
+  color: $text-color;
+  background-color: $body-color;
+}
+
+@mixin btn-preset {
+  border: none;
+  box-shadow: $btn-box-shadow;
+  cursor: pointer;
+  color: $accent-text-color;
+  background-color: $accent-color;
+  &:hover {
+    background-color: rgba($accent-color, 0.7);
+  }
+  &:disabled {
+    cursor: default;
+    background-color: rgba($shadow-color, 0.55);
+  }
+}

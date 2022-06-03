@@ -1,19 +1,28 @@
+@import '../sassVariables';
 
 .calendar-box {
   &__tool-bar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
   }
   &__tool-box {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: space-evenly;
   }
   &__menu-btn {
-    padding: 2em;
-    height: 2em;
+    @include btn-preset;
+    height: 3em;
+    padding: 0 2em;
+    margin: 1em;
+    font-size: 1.1em;
+    border-radius: 0.5em;
   }
   &__content {
+
   }
 }

@@ -1,4 +1,4 @@
-import './TodoDeleteMenu.scss'
+import './TodoMenu.scss'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 
@@ -13,17 +13,20 @@ export default function TodoDeleteMenu({ idToDelete, closeModal }) {
   }
 
   return (
-    <div className='delete-alert'>
-      <div>
-        <h4 className='delete-alert__text'>
-          Do you really want to delete this event?
+    <div className='menu'>
+      <div className='menu__top-label'>
+        <h4>
+          Deleting event #{idToDelete}
         </h4>
       </div>
-      <div>
-        <button className='delete-alert__submit-btn' onClick={handleDeletion}>
-          Yes 
-        </button>
+
+      <div className='menu__main-content'>
+        <h3>Do you really want to delete this event?</h3>
       </div>
+
+      <button className='menu__btn' onClick={handleDeletion}>
+        Yes 
+      </button>
     </div>
   )
 }

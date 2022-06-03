@@ -1,4 +1,4 @@
-import './TodoInsertMenu.scss'
+import './TodoMenu.scss'
 import React from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -13,8 +13,13 @@ export default function TodoInsertMenu({ closeModal, selectedDate }) {
 
   const [picked, setPicked] = useState([])
   const pick = (id) => () => {
-    if(!picked.includes(id)) {
-      setPicked((prev) => prev.concat(id))
+    switch (picked.includes(id)) {
+      case false: 
+        setPicked((prevPicked) => prevPicked.concat(id))
+        break;
+      case true:
+        setPicked((prevPicked) => prevPicked.filter(el => el !== id))
+        break;
     }
   }
 
@@ -25,25 +30,26 @@ export default function TodoInsertMenu({ closeModal, selectedDate }) {
   }
 
   return (
-    <div className='insert-menu'>     
-      <div className="insert-menu__date-label">
+    <div className='menu'>     
+      <div className="menu__top-label">
         <DateLabel selectedDate={selectedDate} />
       </div> 
 
-      <div className='insert-menu__list' >
+      <div className='menu__main-content' >
         <TodoList 
           items={availableTodos} 
+          itemsSelected={picked}
           itemOnClickFn={pick} 
-          placeholderText={"No todos are available for this date"} 
+          placeholderText={"No events are available for this date"} 
           />
       </div>
       
       <button 
-        className='insert-menu__submit-btn'
+        className='menu__btn'
         disabled={picked.length < 1} 
         onClick={handleSubmit} 
         type="submit">
-        Appoint selected events
+        Appoint
       </button>
     </div>
   )

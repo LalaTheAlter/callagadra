@@ -1,0 +1,30 @@
+@import '../sassVariables';
+
+.month-picker {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 2em;
+  flex-wrap: nowrap;
+
+  &__month-label {
+    margin-left: 0.5em;
+  }
+
+  &__btn-group {
+    display: flex;
+    flex-direction: row;    
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__move-btn {
+    @include btn-preset;
+    margin: 0.5em;
+    border-radius: 50%;
+    height: 3em;
+    width: 3em;
+    font-weight: 800;
+  }
+}

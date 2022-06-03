@@ -13,7 +13,7 @@ export default function CalendarBox() {
   return (
     <div className="calendar-box">
       <div className="calendar-box__tool-bar">
-        <div className="calendar-box__tool-box">
+        <div className="calendar-box__month-picker">
           <MonthPicker selectedMonth={month} cbParent={setMonth} />
         </div>
 

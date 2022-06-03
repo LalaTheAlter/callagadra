@@ -1,0 +1,24 @@
+@import '../sassVariables';
+
+.todo-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  
+  &__slider-label {
+    text-align: center;
+    font-size: 1.5em;
+  }
+  &__slider {
+    margin: 0.5em;
+  }
+  &__text-field {
+    margin: 0.5em;
+  }
+  &__submit-btn {
+    @include btn-preset;
+    font-size: 1.2em;
+    height: 2em;
+    border-radius: $frame-border-radius;
+  }
+}
