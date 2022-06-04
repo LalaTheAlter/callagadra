@@ -8,16 +8,19 @@
     align-items: center;
     flex-wrap: nowrap;
   }
+
   &__tool-box {
     display: flex;
     flex-direction: row;
+   
     align-items: center;
     justify-content: space-evenly;
   }
   &__menu-btn {
     @include btn-preset;
-    height: 3em;
-    padding: 0 2em;
+    height: 100%;
+    min-height: 3em;
+    max-height: max-content;
     margin: 1em;
     font-size: 1.1em;
     border-radius: 0.5em;

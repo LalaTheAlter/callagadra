@@ -8,6 +8,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
   
   &__text-content {
     font-size: 1em;
@@ -40,39 +41,27 @@
     padding: 0;
     margin: 0;
     font-size: 1.25em;
-    // box-shadow: 0 1px 2px black;
-    // background-color: aliceblue;
     border: 2px solid transparent;
     border-radius: 0 0 0.5em 0.5em;
     cursor: pointer;
     width: 2em;
-
-    // &--change {
-
-    // }
-    // &--remove {
-
-    // }
-    // &--delete {
-
-    // }
   }
 }
 
 
 $time-colors: (
-  #cc6698, // 0:00-1:59
-  #0869ad, // 2:00-3:59
-  #ff8300, // 4:00-5:59
-  #7A86b8, // 6:00-7:59
-  #71bf45, // 8:00-9:59
-  #f05133, // 10:00-11:59
-  #2aa9e0, // 12:00-13:59
+  #485665, // 0:00-1:59
+  #E87EA1, // 2:00-3:59
+  #F3D34A, // 6:00-7:59
+  #ff8300, // 8:00-9:59
+  #E71D36, // 10:00-11:59
+  #f05133, // 12:00-13:59
   #71bf45, // 14:00-15:59
-  #ef0e39, // 16:00-17:59
+  #E40066, // 12:00-13:59
+  #2aa9e0, // 16:00-17:59
   #9e79d7, // 18:00-19:59
-  #2aa9e0, // 20:00-21:59
-  #ef0e39, // 22:00-23:59
+  #345995, // 20:00-21:59
+  #596F62, // 22:00-23:59
   // 12 colors for each hour-block
 );
 

@@ -7,6 +7,7 @@
     $frame-border-radius $frame-border-radius 
     0                    0;
   overflow: hidden;
+ 
   &__days-label {
     background-color: $accent-color;
     color: $accent-text-color;
@@ -19,7 +20,6 @@
   &__tiles-collection {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    min-height: 100vh;
+    grid-template-rows: repeat(6, auto);
   }
 }

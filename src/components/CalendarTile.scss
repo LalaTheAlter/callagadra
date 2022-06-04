@@ -1,14 +1,19 @@
 @import "../sassVariables";
+
 .calendar-tile {
   background-color: $background-color;
   border: outset 1px;
-  min-height: 100%;
+  min-height: 20vh;
   min-width: 100%;
-
+  @include fade-in-animation;
+  transition: all 0.1s ease-out;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  &:active {
+    transform: scale(110%, 110%);
+  }
   &__todo-list {
     // height: 80%;
     // margin-bottom: 5%;
@@ -19,17 +24,18 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     flex-wrap: nowrap;
   }
   &__rest-indicator {
     padding: 0.1em 0.5em;
+    // height: 1.2em;
   }
   &__date-label {
     font-weight: 800;
     font-size: 1.2em;
     text-align: center;
-    background-color: $accent-color;
+    background-color: $text-color;
     color: $accent-text-color;
     border-radius: 50% 0 0 0;
     height: 1.2em;
@@ -38,29 +44,28 @@
 }
 
 
-
-
 $month-colors: (
-  #cc6698, // Jan 
-  #0869ad, // Feb
-  #ff8300, // Mar
-  #7A86b8, // Apr
-  #71bf45, // May
-  #f05133, // Jun
-  #2aa9e0, // Jul
-  #71bf45, // Aug
-  #ef0e39, // Sep
-  #9e79d7, // Oct
-  #2aa9e0, // Nov
-  #ef0e39, // Dec
+  #9BC1BC, // Jan 
+  #BCA0BC, // Feb
+  #02C39A, // Mar
+  #FFC6AC, // Apr
+  #ED7D3A, // May
+  #91CB3E, // Jun
+  #2A9134, // Jul
+  #C14953, // Aug
+  #F5D547, // Sep
+  #C14953, // Oct
+  #B5AA9D, // Nov
+  #3C6997, // Dec
   // 12 colors for each month
 );
+
 @for $i from 1 through 12 {
   $month-color: nth($month-colors, $i);
   .calendar-tile--month-theme-#{$i} { 
       
     .calendar-tile__bottom-panel {
-        background-color: rgba($month-color, 0.3);
+        background-color: rgba($month-color, 1);
       }
     }
 }

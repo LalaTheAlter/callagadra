@@ -24,22 +24,21 @@ export default function TodoItem({ todoID, onClickFn, dateForRemoveButton, withD
           <div className="todo-item__btn-group"> 
           {dateForRemoveButton &&
             <TodoRemoveButton 
-              className={"todo-item__btn todo-item__btn--remove"} 
+              className={"todo-item__btn"} 
               idToRemove={todoID} 
               atDate={dateForRemoveButton}
               buttonText={"⨯"} />
           }
           {withChangeButton &&
             <ModalOpener 
-              buttonClassName={"todo-item__btn todo-item__btn--change"} 
+              buttonClassName={"todo-item__btn"} 
               buttonText={"✎"}>
               <TodoWriteMenu idToEdit={todoID} />
             </ModalOpener>
           }
           {withDeleteButton &&
             <ModalOpener 
-              buttonClassName={"todo-item__btn todo-item__btn--delete"} 
-              modalModifierClassName="modal--not-shadowed" 
+              buttonClassName={"todo-item__btn"} 
               buttonText={"☢"}>
               <TodoDeleteMenu idToDelete={todoID} />
             </ModalOpener>

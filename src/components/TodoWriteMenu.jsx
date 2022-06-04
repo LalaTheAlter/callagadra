@@ -48,7 +48,9 @@ export default function TodoWriteMenu({ idToEdit, closeModal }) {
   return (
     <div className="menu">
       <div className="menu__top-label">
-        <h3>{isInChangeMode ? `event #${idToEdit}` : "New event"}</h3>
+        {isInChangeMode ? 
+        <h3>Event <span className='menu__highlight'>#{idToEdit}</span></h3>
+        : <h3>New event</h3>}
       </div>
       
       <div className="menu__main-content">

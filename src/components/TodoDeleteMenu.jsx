@@ -16,7 +16,7 @@ export default function TodoDeleteMenu({ idToDelete, closeModal }) {
     <div className='menu'>
       <div className='menu__top-label'>
         <h4>
-          Deleting event #{idToDelete}
+          Event <span className='menu__highlight'>#{idToDelete}</span>
         </h4>
       </div>
 

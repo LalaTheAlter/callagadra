@@ -19,6 +19,9 @@
     z-index: 444;
     box-shadow: $frame-box-shadow;
   }
+  &__highlight {
+    text-decoration: underline;
+  }
   &__main-content {
     z-index: 333;
     overflow-y: auto;

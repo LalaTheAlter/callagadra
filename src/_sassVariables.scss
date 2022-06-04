@@ -1,20 +1,25 @@
-$background-color: aliceblue !default;
-$accent-color: blue !default;
-$shadow-color: black !default;
+$body-color: #EDE3E4 !default;
+$background-color:#FAFFFD !default;
+$accent-color:  #3C91E6 !default;
 $text-color: #241C13 !default;
-$accent-text-color: white !default;
-$body-color: white !default;
+$shadow-color: $text-color !default;
+$accent-text-color: $background-color !default;
+
+$font-family: 'Trebuchet MS', sans-serif;
 
 $frame-box-shadow: 0 0 5px $shadow-color !default;
 $btn-box-shadow: 0 1px 2px $shadow-color !default;
 $frame-border-radius: 1.5em !default;
 
+
 body {
   color: $text-color;
   background-color: $body-color;
+  font-family: $font-family;
 }
 
 @mixin btn-preset {
+  font-family:  $font-family;
   border: none;
   box-shadow: $btn-box-shadow;
   cursor: pointer;
@@ -28,3 +33,17 @@ body {
     background-color: rgba($shadow-color, 0.55);
   }
 }
+
+@mixin fade-in-animation{
+  animation: fade-in 0.5s;
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+

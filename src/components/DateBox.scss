@@ -2,7 +2,7 @@
 
 .date-box {
   position: sticky;
-  top: 0;
+  top: 1em;
   right: 0;
   border-radius: $frame-border-radius;
   overflow: auto;
@@ -11,7 +11,8 @@
   flex-direction: column;
   justify-content: center;
   box-shadow: $frame-box-shadow;
-
+  max-height: 80vh;
+  
   &__date-label {
     z-index: 44;
     text-align: center;
@@ -25,13 +26,12 @@
     @include btn-preset;
     z-index: 4;
     font-size: 2em;
-    height: 1.5em;
+    min-height: 1.5em;
     font-weight: 800;
-    border-radius: 0 0 1.5em 1.5em;
   }
   &__todo-list {
-    height: 75%;
+    overflow-y: auto;
+    max-height: 50%;
     flex-grow: 1;
   }
-
 }

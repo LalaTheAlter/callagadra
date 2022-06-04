@@ -1,4 +1,4 @@
-// @import '.../_sassVariables';
+@import "../../sassVariables";
 
 .modal {
   position: fixed;
@@ -11,6 +11,7 @@
   align-items: center;
   justify-content: center;
   background-color: rgba(black, 0.35);
+  @include fade-in-animation;
 
   &__window {
     margin: 5vh;
@@ -19,3 +20,4 @@
   }
 
 }
+
