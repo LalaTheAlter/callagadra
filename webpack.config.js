@@ -16,7 +16,7 @@ module.exports = {
     publicPath: "/",
   },
   
-  devtool: 'source-map',
+  devtool: currMode === "development" ? 'source-map' : 'eval',
   devServer: {
     static: './dist',
     hot: true,
